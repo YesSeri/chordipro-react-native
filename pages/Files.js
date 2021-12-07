@@ -3,27 +3,26 @@ import { StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from '../components/Files/BottomBar';
 import FileList from '../components/Files/FileList';
-import { importAllKeys, saveData } from '../storage';
+import { importAllKeys, saveData, getData } from '../storage';
 
 const Files = () => {
 	const [files, setFiles] = useState([]);
-
+	async function getFiles() {
+		const keys = await importAllKeys();
+		setFiles(keys);
+	}
 	useEffect(() => {
-		async function getFiles() {
-			const keys = await importAllKeys();
-			setFiles(keys);
-		}
 		getFiles();
 	}, []);
 
-	function createFile(name) {
+	async function createFile(name) {
 		saveData("", name);
-		setFiles([...files, name]);
+		getFiles();
 	}
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScrollView>
+			<ScrollView style={{ alignSelf: 'center', }}>
 				<FileList files={files} />
 			</ScrollView>
 			<BottomBar createFile={createFile} />
