@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, Button, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from '../components/Files/BottomBar';
 import FileList from '../components/Files/FileList';
 import { importAllKeys, saveData, getData } from '../storage';
 
-const Files = () => {
+const Files = ({ ...restProps }) => {
 	const [files, setFiles] = useState([]);
 	async function getFiles() {
 		const keys = await importAllKeys();
@@ -20,13 +20,15 @@ const Files = () => {
 		getFiles();
 	}
 
+
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView style={{ alignSelf: 'center', }}>
-				<FileList files={files} />
+				<FileList files={files} {...restProps} />
 			</ScrollView>
 			<BottomBar createFile={createFile} />
-		</SafeAreaView>
+		</SafeAreaView >
 	);
 }
 

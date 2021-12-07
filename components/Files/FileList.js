@@ -6,23 +6,29 @@ import { getData } from '../../storage';
 import SongContext from '../../helper/context';
 
 
-const FileList = ({ files = [] }) => {
+const FileList = ({ files = [], navigation }) => {
 	const { setTitle, setContent } = useContext(SongContext)
-	const handleClick = async (el) => {
+	const handleClick = async (key) => {
 		// Should open the clicked element
-		const song = await getData(el)
-		console.log({ song, el })
+		const content = await getData(key)
+		setTitle(key)
+		setContent(content)
+		if (content) {
+			navigation.navigate('Viewer')
+		} else {
+			navigation.navigate('Editor')
+		}
 
 	}
 	return (
 		<View>
 			<Heading>FILES</Heading>
-			{files.map((el, i) => (
-				<Pressable key={i} onPress={() => handleClick(el)}>
+			{files.map((key, i) => (
+				<Pressable key={i} onPress={() => handleClick(key)}>
 					<View style={styles.container}>
 						<Ionicons name={"document-outline"} />
 						<Text>
-							{el}
+							{key}
 						</Text>
 					</View>
 				</Pressable>

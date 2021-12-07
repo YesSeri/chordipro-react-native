@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
-import { saveData } from '../../storage'
 
 const BottomBar = ({ createFile }) => {
 	const [modalVisible, setModalVisible] = useState(false);

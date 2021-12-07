@@ -1,16 +1,19 @@
-import React, { useContext } from 'react'
-import { StyleSheet, TextInput } from 'react-native';
+import React, { useState, useContext } from 'react'
+import { Button, StyleSheet, TextInput } from 'react-native';
 import SongContext from '../helper/context';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Editor = () => {
 	const { content, setContent } = useContext(SongContext)
+	const [hasChanged, setHasChanged] = useState(false)
+
 	function handleChange(newSong) {
 		setContent(newSong)
 	}
 	return (
 		<SafeAreaView style={styles.container}>
-			<TextInput style={styles.textInput} autoCorrect={false} value={song} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
+			<TextInput style={styles.textInput} autoCorrect={false} value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
+			<Button title="save"></Button>
 		</SafeAreaView>
 	)
 }

@@ -4,11 +4,11 @@ import Declaration from './Declaration'
 import Music from './Music'
 import { parseSong } from '../../helper/parser'
 
-const Song = ({ song }) => {
+const Song = ({ content }) => {
 	const [parsed, setParsed] = useState([])
 	useEffect(() => {
-		setParsed(parseSong(song))
-	}, [song])
+		setParsed(parseSong(content))
+	}, [content])
 
 	return (
 		<View style={styles.outer}>
