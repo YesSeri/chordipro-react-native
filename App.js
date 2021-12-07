@@ -8,6 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { titleData, songData } from './helper/data'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,37 +21,40 @@ export default function App() {
 	);
 	return (
 		<SongContext.Provider value={value}>
-			<NavigationContainer>
-				<Tab.Navigator
-					screenOptions={({ route }) => ({
-						tabBarIcon: ({ focused, color, size }) => {
-							let iconName;
+			<SafeAreaProvider>
+				<NavigationContainer>
+					<Tab.Navigator
+						screenOptions={({ route }) => ({
+							tabBarIcon: ({ focused, color, size }) => {
+								let iconName;
 
-							if (route.name === 'Viewer') {
-								iconName = focused ? 'eye-outline' : 'eye';
-							}
-							if (route.name === 'Files') {
-								iconName = focused ? 'file-tray-stacked-outline' : 'file-tray-stacked';
+								if (route.name === 'Viewer') {
+									iconName = focused ? 'eye-outline' : 'eye';
+								}
+								if (route.name === 'Files') {
+									iconName = focused ? 'file-tray-stacked-outline' : 'file-tray-stacked';
 
-							}
-							if (route.name === 'Editor') {
-								iconName = focused ? 'create-outline' : 'create';
+								}
+								if (route.name === 'Editor') {
+									iconName = focused ? 'create-outline' : 'create';
 
 
-							}
+								}
 
-							// You can return any component that you like here!
-							return <Ionicons name={iconName} size={size} color={color} />;
-						},
-						tabBarActiveTintColor: 'tomato',
-						tabBarInactiveTintColor: 'gray',
-					})}
-				>
-					<Tab.Screen name="Viewer" component={Viewer} />
-					<Tab.Screen name="Files" component={Files} />
-					<Tab.Screen name="Editor" component={Editor} />
-				</Tab.Navigator>
-			</NavigationContainer>
-		</SongContext.Provider>
+								// You can return any component that you like here!
+								return <Ionicons name={iconName} size={size} color={color} />;
+							},
+							tabBarActiveTintColor: 'tomato',
+							tabBarInactiveTintColor: 'gray',
+							headerShown: false,
+						})}
+					>
+						<Tab.Screen name="Files" component={Files} />
+						<Tab.Screen name="Viewer" component={Viewer} />
+						<Tab.Screen name="Editor" component={Editor} />
+					</Tab.Navigator>
+				</NavigationContainer>
+			</SafeAreaProvider>
+		</SongContext.Provider >
 	);
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { createChordLine, hasLyrics } from '../../helper/music';
-import MonoText from '../../typography';
+import { MonoText } from '../../typography';
 
 const Music = ({ info }) => {
 	const lineHasLyrics = hasLyrics(info.content.lyrics)
