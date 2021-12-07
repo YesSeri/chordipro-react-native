@@ -1,24 +1,30 @@
 import React, { useState } from 'react'
 import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
-import { setData } from '../../storage'
+import { saveData } from '../../storage'
 
-const BottomBar = () => {
+const BottomBar = ({ createFile }) => {
 	const [modalVisible, setModalVisible] = useState(false);
 	const [name, setName] = useState("");
-	function handleNewClick() {
+
+	function handleNew() {
 		setModalVisible(true);
 	}
-	function createFile() {
-		setData(name, '')
+	function createClick() {
+		createFile(name)
+		leaveModal()
+	}
+	function leaveModal() {
+		setName("");
+		setModalVisible(false);
 	}
 	return (
 		<View style={styles.container}>
 			<View style={styles.buttonContainer}>
-				<Button onPress={handleNewClick} style={styles.button} title='new' />
+				<Button onPress={handleNew} style={styles.button} title='new' />
 			</View>
 			<Modal
 				animationType="slide"
-				// transparent={true}
+				transparent={true}
 				visible={modalVisible}
 			>
 				<View style={styles.modal}>
@@ -28,13 +34,10 @@ const BottomBar = () => {
 						placeholder="new file name"
 						onChangeText={setName}></TextInput>
 					<View>
-						<Button title="create" onPress={createFile} />
+						<Button title="create" onPress={createClick} />
 					</View>
 					<View>
-						<Button title="cancel" color="tomato" onPress={() => {
-							setName("");
-							setModalVisible(false);
-						}} />
+						<Button title="cancel" color="tomato" onPress={leaveModal} />
 					</View>
 				</View>
 			</Modal>

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Key is song name, value is chordpro format song.
-export const setData = async (value, key) => {
+export const saveData = async (value, key) => {
 	console.log({ value, key })
 	try {
 		await AsyncStorage.setItem(key, value)
@@ -9,7 +9,6 @@ export const setData = async (value, key) => {
 		console.error(e)
 	}
 }
-
 
 export const getData = async (key) => {
 	try {

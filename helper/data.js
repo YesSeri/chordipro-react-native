@@ -1,5 +1,5 @@
 const titleData = "Neil Young - Cinnamon Girl"
-const songData = `{t:Fairytale Of New York}
+const contentData = `{t:Fairytale Of New York}
 {st:The Pogues}
 {define G/D base-fret 1 frets x x 0 4 3 3}
 {define G/A base-fret 3 frets x 0 3 2 1 1}
@@ -20,4 +20,4 @@ You were [D]handsome
 roadway was [A]waiting for [D]me
  
 {ci:Asus4/E  - xx2233 or 575785}`
-export { titleData, songData }
+export { titleData, contentData }

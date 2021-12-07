@@ -5,7 +5,7 @@ import { Editor, Viewer, Files } from './pages'
 import SongContext from './helper/context';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { titleData, songData } from './helper/data'
+import { titleData, contentData } from './helper/data'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -14,10 +14,10 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
 	const [title, setTitle] = useState(titleData);
-	const [song, setSong] = useState(songData);
+	const [content, setContent] = useState(contentData);
 	const value = useMemo(
-		() => ({ title, setTitle, song, setSong }),
-		[title, song]
+		() => ({ title, setTitle, content, setContent }),
+		[title, content]
 	);
 	return (
 		<SongContext.Provider value={value}>
