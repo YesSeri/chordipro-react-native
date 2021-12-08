@@ -13,8 +13,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-	const [title, setTitle] = useState(titleData);
-	const [content, setContent] = useState(contentData);
+	const [title, setTitle] = useState("");
+	const [content, setContent] = useState("");
 	const value = useMemo(
 		() => ({ title, setTitle, content, setContent }),
 		[title, content]

@@ -3,7 +3,7 @@ import { StyleSheet, Button, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from '../components/Files/BottomBar';
 import FileList from '../components/Files/FileList';
-import { importAllKeys, saveData, getData } from '../storage';
+import { importAllKeys, saveData, debugging, getData } from '../storage';
 
 const Files = ({ ...restProps }) => {
 	const [files, setFiles] = useState([]);
@@ -16,17 +16,22 @@ const Files = ({ ...restProps }) => {
 	}, []);
 
 	async function createFile(name) {
-		saveData("", name);
+		await saveData("", name);
 		getFiles();
 	}
-
-
+	async function handlePress() {
+		await saveData("THIS IS LYRICS", "A1")
+		const data = await getData("A1");
+		console.log(data)
+	}
 
 	return (
 		<SafeAreaView style={styles.container}>
+			<Button title="CLEAR" onPress={() => debugging.clearAsyncStorage()} />
 			<ScrollView style={{ alignSelf: 'center', }}>
 				<FileList files={files} {...restProps} />
 			</ScrollView>
+			<Button title="print" onPress={handlePress} />
 			<BottomBar createFile={createFile} />
 		</SafeAreaView >
 	);

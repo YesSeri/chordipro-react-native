@@ -1,4 +1,5 @@
 export function createChordLine(acc) {
+	console.log({ acc })
 	let row = ""
 	const pos = acc[0].position;
 	row += ' '.repeat(pos);

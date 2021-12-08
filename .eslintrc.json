@@ -4,20 +4,21 @@
 		"es2021": true
 	},
 	"extends": [
-		"eslint:recommended",
-		"standard"
+		"eslint:recommended"
 	],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
 		},
-		"ecmaVersion": 13,
+		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react",
+		"react-native"
 	],
 	"rules": {
-		"react/prop-types": "off"
+		"react/prop-types": "off",
+		"no-unused-vars": "off"
 	}
 }

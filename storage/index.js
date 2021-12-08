@@ -11,12 +11,7 @@ export const saveData = async (value, key) => {
 
 export const getData = async (key) => {
 	try {
-		const value = await AsyncStorage.getItem(key)
-		if (value !== null) {
-			return value
-		} else {
-			throw new Error("No such song stored")
-		}
+		return await AsyncStorage.getItem(key)
 	} catch (e) {
 		console.error(e)
 	}
@@ -31,3 +26,8 @@ export const importAllKeys = async () => {
 		console.error(error)
 	}
 }
+
+const clearAsyncStorage = async () => {
+	AsyncStorage.clear();
+};
+export const debugging = { clearAsyncStorage }
