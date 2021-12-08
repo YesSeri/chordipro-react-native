@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Viewer = () => {
 	const { content, title } = useContext(SongContext)
+	console.log(content)
 	return (
 		<SafeAreaView>
 			<ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >

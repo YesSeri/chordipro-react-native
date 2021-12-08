@@ -16,7 +16,7 @@ export const Heading = ({ style, children, ...restProps }) => {
 
 const styles = StyleSheet.create({
 	text: {
-		fontFamily: 'monospace',
+		// fontFamily: 'monospace',
 	},
 	heading: {
 		textAlign: 'center',

@@ -23,12 +23,15 @@ const Song = ({ content }) => {
 	)
 }
 const SongElement = ({ el }) => {
+	console.log(el)
 	switch (el.type) {
 		case 'declaration':
 			return <Declaration command={el.subtype.command} arg={el.subtype.argument} />
 		case 'empty':
 			return <Empty />
 		case 'music':
+			return <Music info={el}></Music>
+		case 'acapella':
 			return <Music info={el}></Music>
 		default:
 			return null

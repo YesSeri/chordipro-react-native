@@ -10,6 +10,7 @@ const Editor = () => {
 	function handleChange(newSong) {
 		setContent(newSong)
 	}
+	console.log("TESTING")
 	return (
 		<SafeAreaView style={styles.container}>
 			<TextInput style={styles.textInput} autoCorrect={false} value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
