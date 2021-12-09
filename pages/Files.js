@@ -8,6 +8,7 @@ import { importAllKeys, saveData, debugging, getData } from '../storage';
 const Files = ({ ...restProps }) => {
 	const [files, setFiles] = useState([]);
 	async function getFiles() {
+		console.log(await importAllKeys())
 		const keys = await importAllKeys();
 		setFiles(keys);
 	}
@@ -19,8 +20,6 @@ const Files = ({ ...restProps }) => {
 		await saveData("", name);
 		getFiles();
 	}
-	async function handlePress() {
-	}
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -28,7 +27,6 @@ const Files = ({ ...restProps }) => {
 			<ScrollView style={{ alignSelf: 'center', }}>
 				<FileList files={files} {...restProps} />
 			</ScrollView>
-			<Button title="print" onPress={handlePress} />
 			<BottomBar createFile={createFile} />
 		</SafeAreaView >
 	);

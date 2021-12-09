@@ -1,0 +1,1 @@
+export const selectFileErrorMessage = 'Please select a or create a file in the Files view.'
