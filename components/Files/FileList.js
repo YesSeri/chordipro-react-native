@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 import { Heading } from '../../typography';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getData } from '../../storage';
-import SongContext from '../../helper/context';
+import SongContext from '../../helper/reducer';
 
 
 const FileList = ({ files = [], navigation }) => {
@@ -11,8 +11,8 @@ const FileList = ({ files = [], navigation }) => {
 	const handleClick = async (key) => {
 		// Should open the clicked element
 		const content = await getData(key)
-		setTitle(key)
 		setContent(content)
+		setTitle(key)
 		if (content) {
 			navigation.navigate('Viewer')
 		} else {

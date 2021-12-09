@@ -23,7 +23,6 @@ const Song = ({ content }) => {
 	)
 }
 const SongElement = ({ el }) => {
-	console.log({ el })
 	switch (el.type) {
 		case 'declaration':
 			return <Declaration command={el.subtype.command} arg={el.subtype.argument} />

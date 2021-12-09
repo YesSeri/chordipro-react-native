@@ -2,17 +2,17 @@ import React, { useState, useEffect, useCallback, useContext } from 'react'
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Song from '../components/Viewer/Song'
-import SongContext from '../helper/context';
+import SongContext from '../helper/reducer';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Viewer = () => {
-	const { content, title } = useContext(SongContext)
+	const { content } = useContext(SongContext)
 	return (
 		<SafeAreaView>
-			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
+			{/* <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
 				<Song content={content} />
 				<StatusBar style='auto' />
-			</ScrollView >
+			</ScrollView > */}
 		</SafeAreaView>
 	)
 }

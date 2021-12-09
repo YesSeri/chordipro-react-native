@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { Editor, Viewer, Files } from './pages'
-import SongContext from './helper/context';
+import { dispatch, state } from './helper/reducer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { titleData, contentData } from './helper/data'
@@ -12,15 +12,18 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
+const SongContext = createContext()
+
 export default function App() {
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
-	const value = useMemo(
-		() => ({ title, setTitle, content, setContent }),
-		[title, content]
-	);
+	// const value = useMemo(
+	// 	() => ({ title, setTitle, content, setContent }),
+	// 	[title, content]
+	// );
+
 	return (
-		<SongContext.Provider value={value}>
+		<SongContext.Provider value={{ dispatch, state }}>
 			<SafeAreaProvider>
 				<NavigationContainer>
 					<Tab.Navigator
@@ -49,9 +52,9 @@ export default function App() {
 							headerShown: false,
 						})}
 					>
-						<Tab.Screen name="Files" component={Files} />
+						{/* <Tab.Screen name="Files" component={Files} />
 						<Tab.Screen name="Viewer" component={Viewer} />
-						<Tab.Screen name="Editor" component={Editor} />
+						<Tab.Screen name="Editor" component={Editor} /> */}
 					</Tab.Navigator>
 				</NavigationContainer>
 			</SafeAreaProvider>
