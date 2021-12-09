@@ -10,7 +10,7 @@ const Editor = () => {
 	}
 	return (
 		<SafeAreaView style={styles.container}>
-			<TextInput style={styles.textInput} autoCorrect={false} value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
+			<TextInput style={styles.textInput} autoCorrect={false} keyboardType='visible-password' value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
 			<Button title="save"></Button>
 		</SafeAreaView>
 	)
