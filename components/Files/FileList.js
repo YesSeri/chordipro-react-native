@@ -7,12 +7,11 @@ import SongContext from '../../helper/context';
 
 
 const FileList = ({ files = [], navigation }) => {
-	const { setTitle, setContent } = useContext(SongContext)
+	const { dispatch } = useContext(SongContext)
 	const handleClick = async (key) => {
 		// Should open the clicked element
 		const content = await getData(key)
-		setTitle(key)
-		setContent(content)
+		dispatch({ type: 'newFile', payload: { title: key, content } })
 		if (content) {
 			navigation.navigate('Viewer')
 		} else {

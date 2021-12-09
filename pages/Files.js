@@ -20,9 +20,6 @@ const Files = ({ ...restProps }) => {
 		getFiles();
 	}
 	async function handlePress() {
-		await saveData("THIS IS LYRICS", "A1")
-		const data = await getData("A1");
-		console.log(data)
 	}
 
 	return (

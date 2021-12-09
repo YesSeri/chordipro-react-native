@@ -3,10 +3,10 @@ import { Button, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native'
 import SongContext from '../helper/context';
 
 const Editor = () => {
-	const { content, setContent } = useContext(SongContext)
+	const { state: { content }, dispatch } = useContext(SongContext)
 
-	function handleChange(newSong) {
-		setContent(newSong)
+	function handleChange(newContent) {
+		dispatch({ type: 'setContent', payload: { content: newContent } })
 	}
 	return (
 		<SafeAreaView style={styles.container}>

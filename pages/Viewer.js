@@ -6,7 +6,7 @@ import SongContext from '../helper/context';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Viewer = () => {
-	const { content, title } = useContext(SongContext)
+	const { state: { content, title } } = useContext(SongContext)
 	return (
 		<SafeAreaView>
 			<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
