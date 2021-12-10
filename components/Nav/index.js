@@ -17,6 +17,9 @@ const navOptions = (route) => {
 		if (routeName === 'Editor') {
 			return focused ? 'create-outline' : 'create';
 		}
+		if (routeName === 'Finder') {
+			return focused ? 'search-circle-outline' : 'search-circle';
+		}
 	}
 	return {
 		tabBarIcon: ({ focused, color, size }) => {
