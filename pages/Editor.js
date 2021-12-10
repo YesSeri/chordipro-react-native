@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+<<<<<<< HEAD
 import { Pressable, View, Button, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native';
 import Error from '../components/Error';
 import SongContext from '../helper/context';
@@ -25,6 +26,22 @@ const Editor = ({ navigation }) => {
 				:
 				<Error>{selectFileErrorMessage}</Error>
 			}
+=======
+import { Button, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native';
+import SongContext from '../helper/reducer';
+
+const Editor = () => {
+	const { content, setContent, title } = useContext(SongContext)
+	console.log('aaaaaaaaaaa', { content, title })
+
+	function handleChange(newSong) {
+		setContent(newSong)
+	}
+	return (
+		<SafeAreaView style={styles.container}>
+			{/* <TextInput style={styles.textInput} autoCorrect={false} value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
+			<Button title="save"></Button> */}
+>>>>>>> master
 		</SafeAreaView>
 	)
 }
