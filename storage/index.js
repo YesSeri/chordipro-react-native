@@ -21,7 +21,7 @@ export const getData = async (key) => {
 export const importAllKeys = async () => {
 	try {
 		const keys = await AsyncStorage.getAllKeys()
-		return keys.sort();
+		return keys.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }))
 	} catch (error) {
 		console.error(error)
 	}

@@ -8,7 +8,6 @@ import { importAllKeys, saveData, debugging, getData } from '../storage';
 const Files = ({ ...restProps }) => {
 	const [files, setFiles] = useState([]);
 	async function getFiles() {
-		console.log(await importAllKeys())
 		const keys = await importAllKeys();
 		setFiles(keys);
 	}

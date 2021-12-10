@@ -13,5 +13,4 @@ function reducer(state, action) {
 
 const SongContext = createContext({ reducer, initialState })
 
-console.log("AAAAAAAAAAAAAAA")
 export { initialState, reducer, SongContext }

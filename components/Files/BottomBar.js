@@ -46,7 +46,7 @@ const BottomBar = ({ createFile }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row'
+		flexDirection: 'row',
 	},
 	buttonContainer: {
 		flex: 1,
@@ -55,6 +55,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		flex: 0.5,
 	},
+	textinput: {
+		backgroundColor: 'white',
+	}
 });
 
 export default BottomBar

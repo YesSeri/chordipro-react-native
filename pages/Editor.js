@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react'
 import { Pressable, View, Button, Text, SafeAreaView, StyleSheet, TextInput } from 'react-native';
 import Error from '../components/Error';
 import SongContext from '../helper/context';
-import { selectFileErrorMessage } from '../helper/ErrorMessages';
 import { saveData } from '../storage';
 
 const Editor = ({ navigation }) => {
@@ -17,13 +16,15 @@ const Editor = ({ navigation }) => {
 	}
 	return (
 		<SafeAreaView style={styles.container}>
-			{title ?
-				<View>
+			{title && content ?
+				<View style={styles.container}>
 					<TextInput style={styles.textInput} autoCorrect={false} keyboardType='visible-password' value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
 					<Button title="save" disabled={hasChanged} onPress={handleSavePress}></Button>
 				</View>
 				:
-				<Error>{selectFileErrorMessage}</Error>
+				<Text>
+					AAAAAAAAAAA
+				</Text>
 			}
 		</SafeAreaView>
 	)
