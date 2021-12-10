@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Button, Text, View, Pressable } from 'react-native';
 import { Heading } from '../../typography';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getData } from '../../storage';
@@ -26,7 +26,7 @@ const FileList = ({ files = [], navigation }) => {
 				<Pressable key={i} onPress={() => handleClick(key)}>
 					<View style={styles.container}>
 						<Ionicons name={"document-outline"} />
-						<Text>
+						<Text style={styles.titleText}>
 							{key}
 						</Text>
 					</View>
@@ -39,8 +39,9 @@ const FileList = ({ files = [], navigation }) => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: 'row'
-	}
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	},
 });
 
 export default FileList

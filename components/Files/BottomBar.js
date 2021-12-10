@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
+import CustomModal from './CustomModal';
+import DeleteButton from './DeleteButton';
 
 const BottomBar = ({ createFile }) => {
 	const [modalVisible, setModalVisible] = useState(false);
@@ -18,28 +20,15 @@ const BottomBar = ({ createFile }) => {
 	}
 	return (
 		<View style={styles.container}>
-			<View style={styles.buttonContainer}>
-				<Button onPress={handleNew} style={styles.button} title='new' />
-			</View>
-			<Modal
-				animationType="slide"
-				transparent={true}
-				visible={modalVisible}
-			>
-				<View style={styles.modal}>
-					<TextInput
-						style={styles.textinput}
-						// style={{ paddingBottom: 20 }}
-						placeholder="new file name"
-						onChangeText={setName}></TextInput>
-					<View>
-						<Button title="create" onPress={createClick} />
-					</View>
-					<View>
-						<Button title="cancel" color="tomato" onPress={leaveModal} />
-					</View>
+			<View style={styles.allButtonContainer}>
+				<View style={styles.buttonContainer}>
+					<Button onPress={handleNew} style={styles.button} title='new' />
 				</View>
-			</Modal>
+				<View style={styles.buttonContainer}>
+					<Button title="delete" color='tomato' />
+				</View>
+			</View>
+			<CustomModal visible={modalVisible} setName={setName} createClick={createClick} leaveModal={leaveModal} />
 		</View>
 	)
 }
@@ -48,16 +37,13 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 	},
-	buttonContainer: {
+	allButtonContainer: {
 		flex: 1,
+		flexDirection: 'row',
 	},
-	modal: {
-		justifyContent: 'center',
-		flex: 0.5,
+	buttonContainer: {
+		flex: 1
 	},
-	textinput: {
-		backgroundColor: 'white',
-	}
 });
 
 export default BottomBar

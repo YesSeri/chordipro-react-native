@@ -22,7 +22,7 @@ const Files = ({ ...restProps }) => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Button title="CLEAR" onPress={() => debugging.clearAsyncStorage()} />
+			{/* <Button title="CLEAR" onPress={() => debugging.clearAsyncStorage()} /> */}
 			<ScrollView style={{ alignSelf: 'center', }}>
 				<FileList files={files} {...restProps} />
 			</ScrollView>
