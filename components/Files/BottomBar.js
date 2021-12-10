@@ -6,6 +6,7 @@ import DeleteButton from './DeleteButton';
 const BottomBar = ({ createFile }) => {
 	const [modalVisible, setModalVisible] = useState(false);
 	const [name, setName] = useState("");
+	const [isDeleting, setIsDeleting] = useState(false);
 
 	function handleNew() {
 		setModalVisible(true);
@@ -25,7 +26,7 @@ const BottomBar = ({ createFile }) => {
 					<Button onPress={handleNew} style={styles.button} title='new' />
 				</View>
 				<View style={styles.buttonContainer}>
-					<Button title="delete" color='tomato' />
+					<Button title={isDeleting ? "stop" : "delete"} color={isDeleting ? 'red' : 'tomato'} onPress={() => setIsDeleting(!isDeleting)} />
 				</View>
 			</View>
 			<CustomModal visible={modalVisible} setName={setName} createClick={createClick} leaveModal={leaveModal} />
