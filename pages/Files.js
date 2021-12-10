@@ -3,30 +3,26 @@ import { StyleSheet, Button, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from '../components/Files/BottomBar';
 import FileList from '../components/Files/FileList';
-import { importAllKeys, saveData, debugging, getData } from '../storage';
+import { importAllKeys } from '../storage';
 
-const Files = ({ ...restProps }) => {
+const Files = ({ navigation }) => {
 	const [files, setFiles] = useState([]);
-	async function getFiles() {
-		const keys = await importAllKeys();
-		setFiles(keys);
-	}
+	const [isDeleting, setIsDeleting] = useState(false);
 	useEffect(() => {
-		getFiles();
+		async function getFiles() {
+			const keys = await importAllKeys();
+			setFiles(keys);
+		}
+		getFiles()
 	}, []);
-
-	async function createFile(name) {
-		await saveData("", name);
-		getFiles();
-	}
 
 	return (
 		<SafeAreaView style={styles.container}>
 			{/* <Button title="CLEAR" onPress={() => debugging.clearAsyncStorage()} /> */}
 			<ScrollView style={{ alignSelf: 'center', }}>
-				<FileList files={files} {...restProps} />
+				<FileList files={files} navigation={navigation} isDeleting={isDeleting} setFiles={setFiles} />
 			</ScrollView>
-			<BottomBar createFile={createFile} />
+			<BottomBar setFiles={setFiles} isDeleting={isDeleting} setIsDeleting={setIsDeleting} />
 		</SafeAreaView >
 	);
 }

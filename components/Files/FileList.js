@@ -1,15 +1,49 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Button, Text, View, Pressable } from 'react-native';
+import { Platform, StyleSheet, Alert, Text, View, Pressable } from 'react-native';
 import { Heading } from '../../typography';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { getData } from '../../storage';
+import { deleteData, getData, importAllKeys } from '../../storage';
 import SongContext from '../../helper/context';
 
-
-const FileList = ({ files = [], navigation }) => {
+const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
 	const { dispatch } = useContext(SongContext)
 	const handleClick = async (key) => {
-		// Should open the clicked element
+		if (isDeleting) {
+			await promptDelete(key);
+		} else {
+			await openFile(key);
+		}
+	}
+	async function promptDelete(key) {
+		console.log('alert')
+		const title = 'Delete File'
+		const msg = `Are you sure you want to delete ${key}?`
+		if (Platform.OS === 'web') {
+			const answer = confirm(title + '\n' + msg);
+			if (answer) {
+				deleteFile(key)
+			}
+		} else {
+			Alert.alert(
+				title,
+				msg,
+				[
+					{
+						text: "Cancel",
+						onPress: () => console.log("Cancel Pressed"),
+						style: "cancel"
+					},
+					{ text: "OK", onPress: () => deleteFile(key) }
+				]
+			);
+		}
+	}
+	async function deleteFile(key) {
+		await deleteData(key)
+		const keys = await importAllKeys();
+		setFiles(keys);
+	}
+	async function openFile(key) {
 		const content = await getData(key)
 		dispatch({ type: 'newFile', payload: { title: key, content } })
 		if (content) {

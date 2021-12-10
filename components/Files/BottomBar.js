@@ -3,21 +3,11 @@ import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
 import CustomModal from './CustomModal';
 import DeleteButton from './DeleteButton';
 
-const BottomBar = ({ createFile }) => {
+const BottomBar = ({ setFiles, setIsDeleting, isDeleting }) => {
 	const [modalVisible, setModalVisible] = useState(false);
-	const [name, setName] = useState("");
-	const [isDeleting, setIsDeleting] = useState(false);
 
 	function handleNew() {
 		setModalVisible(true);
-	}
-	function createClick() {
-		createFile(name)
-		leaveModal()
-	}
-	function leaveModal() {
-		setName("");
-		setModalVisible(false);
 	}
 	return (
 		<View style={styles.container}>
@@ -29,7 +19,7 @@ const BottomBar = ({ createFile }) => {
 					<Button title={isDeleting ? "stop" : "delete"} color={isDeleting ? 'red' : 'tomato'} onPress={() => setIsDeleting(!isDeleting)} />
 				</View>
 			</View>
-			<CustomModal visible={modalVisible} setName={setName} createClick={createClick} leaveModal={leaveModal} />
+			<CustomModal visible={modalVisible} setVisible={setModalVisible} setFiles={setFiles} />
 		</View>
 	)
 }

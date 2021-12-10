@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
+import { importAllKeys, saveData } from '../../storage';
 
-const CustomModal = ({ visible, setName, createClick, leaveModal }) => {
+const CustomModal = ({ visible, setVisible, setFiles }) => {
+	const [name, setName] = useState("")
+	function leaveModal() {
+		setName("");
+		setVisible(false);
+	}
+	function createClick() {
+		createFile(name)
+		leaveModal()
+	}
+	async function createFile(name) {
+		await saveData("", name);
+		const keys = await importAllKeys();
+		setFiles(keys);
+	}
 	return (
 		<Modal
 			animationType="slide"

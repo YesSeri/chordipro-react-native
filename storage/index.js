@@ -16,6 +16,13 @@ export const getData = async (key) => {
 		console.error(e)
 	}
 }
+export const deleteData = async (key) => {
+	try {
+		return await AsyncStorage.removeItem(key)
+	} catch (e) {
+		console.error(e)
+	}
+}
 
 // Use this to list all songs. Needs to be tweaked.
 export const importAllKeys = async () => {
