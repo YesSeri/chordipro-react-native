@@ -15,7 +15,6 @@ const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
 		}
 	}
 	async function promptDelete(key) {
-		console.log('alert')
 		const title = 'Delete File'
 		const msg = `Are you sure you want to delete ${key}?`
 		if (Platform.OS === 'web') {
@@ -40,12 +39,13 @@ const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
 	}
 	async function deleteFile(key) {
 		await deleteData(key)
+		dispatch({ type: 'noFile' })
 		const keys = await importAllKeys();
 		setFiles(keys);
 	}
 	async function openFile(key) {
 		const content = await getData(key)
-		dispatch({ type: 'newFile', payload: { title: key, content } })
+		dispatch({ type: 'openFile', payload: { title: key, content } })
 		if (content) {
 			navigation.navigate('Viewer')
 		} else {

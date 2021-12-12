@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1020479858105",
+    "project_id": "chordipro-rn",
+    "storage_bucket": "chordipro-rn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020479858105:android:54609b65ce2cd4ce254268",
+        "android_client_info": {
+          "package_name": "com.newestnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020479858105-dbdka4eertpi0mtj6neikldekpc8hlqa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newestnative",
+            "certificate_hash": "6c471fb29b156e3046f901d7d3dc3cb28f768280"
+          }
+        },
+        {
+          "client_id": "1020479858105-afalju6q194e84rn0u208qbomfeei7nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwJLchenmWln5mp800sLDyrae-uQzQs5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020479858105-afalju6q194e84rn0u208qbomfeei7nh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

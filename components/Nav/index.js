@@ -2,9 +2,28 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import tabs from './tabs'
+import { Editor, Viewer, Files, Finder } from '../../pages'
 const Tab = createBottomTabNavigator();
 
+const Nav = () => {
+	return (<NavigationContainer>
+		<Tab.Navigator
+			screenOptions={({ route }) => navOptions(route)}
+		>
+			{tabs.map((tab, i) => (
+				<Tab.Screen key={i} name={tab.name} component={tab.component} />
+			))}
+		</Tab.Navigator>
+	</NavigationContainer>
+	)
+}
+
+const tabs = [
+	{ name: "Files", component: Files },
+	{ name: "Viewer", component: Viewer },
+	{ name: "Editor", component: Editor },
+	{ name: "Finder", component: Finder }
+]
 
 const navOptions = (route) => {
 	function getIcon(routeName, focused) {
@@ -30,17 +49,5 @@ const navOptions = (route) => {
 		tabBarInactiveTintColor: 'gray',
 		headerShown: false,
 	}
-}
-const Nav = () => {
-	return (<NavigationContainer>
-		<Tab.Navigator
-			screenOptions={({ route }) => navOptions(route)}
-		>
-			{tabs.map((tab, i) => (
-				<Tab.Screen key={i} name={tab.name} component={tab.component} />
-			))}
-		</Tab.Navigator>
-	</NavigationContainer>
-	)
 }
 export default Nav;
