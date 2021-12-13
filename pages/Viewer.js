@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
 import Song from '../components/Viewer/Song'
 import SongContext from '../helper/context';
 import Error from '../components/Error';
 import { createContentErrorMessage, selectFileErrorMessage } from '../helper/ErrorMessages';
+import { Heading } from '../typography';
 
 const Viewer = () => {
 	const { state: { content, title } } = useContext(SongContext)
@@ -14,10 +14,10 @@ const Viewer = () => {
 	const message = hasNoContent ? createContentErrorMessage : selectFileErrorMessage
 	return (
 		<SafeAreaView style={styles.container}>
+			<Heading>Viewer</Heading>
 			{hasFile ?
 				<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
 					<Song content={content} />
-					<StatusBar style='auto' />
 				</ScrollView >
 				:
 				<Error>{message}</Error>

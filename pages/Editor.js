@@ -4,6 +4,7 @@ import Error from '../components/Error';
 import SongContext from '../helper/context';
 import { selectFileErrorMessage } from '../helper/ErrorMessages';
 import { saveData } from '../storage';
+import { Heading } from '../typography';
 
 const Editor = ({ navigation }) => {
 	const [hasChanged, setHasChanged] = useState(false)
@@ -17,6 +18,7 @@ const Editor = ({ navigation }) => {
 	}
 	return (
 		<SafeAreaView style={styles.container}>
+			<Heading>Editor</Heading>
 			{hasFile ?
 				<View style={styles.container}>
 					<TextInput style={styles.textInput} placeholder="Enter song in chordpro format. View example song for more details. " autoCorrect={false} keyboardType='visible-password' value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
