@@ -1,18 +1,20 @@
 import { createContext } from "react";
 
-const SongContext = createContext({ title: "", content: "" })
+const SongContext = createContext({ title: "", content: "", files: [] })
 
-export const initialState = { title: "", content: "" };
+export const initialState = { title: "", content: "", files: [] };
 
 
 export function reducer(state, action) {
 	switch (action.type) {
 		case 'openFile':
-			return { title: action.payload.title, content: action.payload.content };
+			return { ...state, title: action.payload.title, content: action.payload.content };
 		case 'setContent':
 			return { ...state, content: action.payload.content }
+		case 'setFiles':
+			return { ...state, files: [...action.payload.files] }
 		case 'noFile':
-			return { title: "", content: "" };
+			return { ...state, title: "", content: "" };
 		default:
 			throw new Error();
 	}

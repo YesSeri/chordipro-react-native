@@ -41,7 +41,7 @@ const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
 		await deleteData(key)
 		dispatch({ type: 'noFile' })
 		const keys = await importAllKeys();
-		setFiles(keys);
+		dispatch({ type: 'setFiles', payload: { files: keys } })
 	}
 	async function openFile(key) {
 		const content = await getData(key)

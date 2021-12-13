@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Declaration from './Declaration'
 import Music from './Music'
 import { parseSong } from '../../helper/parser'
+import { MonoText } from '../../typography';
 
 const Song = ({ content }) => {
 	const [parsed, setParsed] = useState([])
@@ -39,7 +40,7 @@ const SongElement = ({ el }) => {
 }
 
 const Acapella = ({ children }) => (
-	<Text>{children}</Text>
+	<MonoText>{children}</MonoText>
 )
 
 const Empty = () => (
