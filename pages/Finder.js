@@ -1,33 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { Heading } from '../typography';
-import { saveData } from '../storage'
+import { importAllKeys, saveData } from '../storage'
+import SongContext from '../helper/context';
 const titleUrl = 'https://chordipro-backend.herokuapp.com/'
 const getSongUrl = (id) => 'https://chordipro-backend.herokuapp.com/song/' + id
 
 const Finder = ({ navigation }) => {
 	const [songs, setSongs] = useState([])
+	const { dispatch } = useContext(SongContext)
 
 	React.useEffect(() => {
-		// const unsubscribe = navigation.addListener('focus', async () => {
+		// Get all possible songs to download at the start.
 		fetch(titleUrl)
 			.then(response => response.json())
 			.then(data => setSongs(data));
-		// });
-		// Return the function to unsubscribe from the event so it gets removed on unmount
-		// return unsubscribe;
-		// }, [navigation]);
 	}, []);
-	// This handles clicking song. Downloads it to device and then goes into view, or editor. 
-	function handlePress(id) {
+	// This handles clicking to download song. Downloads it to device and then goes into view, or editor. 
+	async function handlePress(id) {
+		navigation.navigate('Files')
 		const songUrl = getSongUrl(id)
-		fetch(songUrl)
-			.then(response => response.json())
-			.then(data => {
-				console.log(data)
-				saveData(data.content, data.title)
-				navigation.navigate('Files')
-			});
+		const response = await fetch(songUrl)
+		const data = await response.json()
+		await saveData(data.content, data.title)
+		const keys = await importAllKeys();
+		dispatch({ type: 'setFiles', payload: { files: keys } })
 	}
 	return (
 		<View>
