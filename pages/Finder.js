@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
-import { Heading } from '../typography';
+import { Heading, SubHeading, subHeading } from '../typography';
 import { importAllKeys, saveData } from '../storage'
 import SongContext from '../helper/context';
 const titleUrl = 'https://chordipro-backend.herokuapp.com/'
@@ -29,7 +29,8 @@ const Finder = ({ navigation }) => {
 	return (
 		<View>
 			<Heading>FINDER</Heading>
-			<View>
+			<SubHeading>Click a song to save it to your files.</SubHeading>
+			<View style={styles.innerContainer}>
 				{songs.map(song => <Text onPress={() => handlePress(song._id)} style={styles.item} key={song._id}>{song.title}</Text>)}
 			</View>
 		</View >
@@ -37,7 +38,8 @@ const Finder = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-	item: { textAlign: 'center', paddingBottom: 10 }
+	item: { textAlign: 'center', paddingBottom: 10 },
+	innerContainer: { paddingTop: 10 }
 });
 
 export default Finder

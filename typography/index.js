@@ -13,6 +13,11 @@ export const Heading = ({ style, children, ...restProps }) => {
 		<Text style={[style, styles.heading]} {...restProps}>{children}</Text>
 	)
 }
+export const SubHeading = ({ style, children, ...restProps }) => {
+	return (
+		<Text style={[style, styles.subHeading]} {...restProps}>{children}</Text>
+	)
+}
 
 const styles = StyleSheet.create({
 	text: {
@@ -21,5 +26,10 @@ const styles = StyleSheet.create({
 	heading: {
 		textAlign: 'center',
 		fontSize: 30
+	},
+	subHeading: {
+		textAlign: 'center',
+		fontStyle: 'italic',
+		fontSize: 15
 	}
 });

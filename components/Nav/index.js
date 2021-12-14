@@ -19,10 +19,10 @@ const Nav = () => {
 }
 
 const tabs = [
-	{ name: "Finder", component: Finder },
 	{ name: "Files", component: Files },
 	{ name: "Viewer", component: Viewer },
 	{ name: "Editor", component: Editor },
+	{ name: "Finder", component: Finder },
 ]
 
 const navOptions = (route) => {
