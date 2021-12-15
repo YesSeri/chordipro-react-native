@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { StyleSheet, ScrollView, SafeAreaView } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Song from '../components/Viewer/Song'
 import SongContext from '../helper/context';
 import Error from '../components/Error';
@@ -17,7 +17,6 @@ const Viewer = () => {
 			{hasFile ?
 				<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
 					<Song content={content} />
-					<StatusBar style='auto' />
 				</ScrollView >
 				:
 				<Error>{message}</Error>

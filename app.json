@@ -1,11 +1,11 @@
 {
-  "expo": {
-    "name": "newest-native",
-    "slug": "newest-native",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
-  },
-  "name": "newest-native"
+	"expo": {
+		"name": "newest-native",
+		"slug": "newest-native",
+		"version": "1.0.0",
+		"assetBundlePatterns": [
+			"**/*"
+		]
+	},
+	"name": "newest-native"
 }

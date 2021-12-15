@@ -1,20 +1,22 @@
-import React, { useState, useMemo, useReducer } from 'react';
-
+import React, { useReducer } from 'react';
 import SongContext, { initialState, reducer } from './helper/context';
-
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Nav from './components/Nav';
+import { importAllKeys, saveData } from './storage'
+import { titleData, contentData } from './helper/data'
 
+async function setDefaultData() {
+	const keys = await importAllKeys()
+	if (keys.length === 0) {
+		saveData(contentData, titleData)
+	}
+}
+
+setDefaultData()
 export default function App() {
-	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
 	const [state, dispatch] = useReducer(reducer, initialState)
-	const value = useMemo(
-		() => ({ title, setTitle, content, setContent }),
-		[title, content]
-	);
 	return (
-		<SongContext.Provider value={{ ...value, state, dispatch }}>
+		<SongContext.Provider value={{ state, dispatch }}>
 			<SafeAreaProvider>
 				<Nav />
 			</SafeAreaProvider>
