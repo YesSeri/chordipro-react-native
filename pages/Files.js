@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Button, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomBar from '../components/Files/BottomBar';
 import FileList from '../components/Files/FileList';
@@ -18,8 +18,7 @@ const Files = ({ navigation }) => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			{/* <Button title="CLEAR" onPress={() => debugging.clearAsyncStorage()} /> */}
-			<ScrollView style={{ alignSelf: 'center', }}>
+			<ScrollView style={styles.innerContainer}>
 				<FileList files={files} navigation={navigation} isDeleting={isDeleting} setFiles={setFiles} />
 			</ScrollView>
 			<BottomBar setFiles={setFiles} isDeleting={isDeleting} setIsDeleting={setIsDeleting} />
@@ -29,6 +28,9 @@ const Files = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
+	innerContainer: {
+		alignSelf: 'center',
+	},
 	container: {
 		flex: 1,
 		// justifyContent: 'space-between'

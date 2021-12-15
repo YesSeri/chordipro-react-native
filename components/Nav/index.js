@@ -43,9 +43,9 @@ const Nav = () => {
 }
 
 const tabs = [
+	{ name: "Editor", component: Editor },
 	{ name: "Files", component: Files },
 	{ name: "Viewer", component: Viewer },
-	{ name: "Editor", component: Editor },
 ]
 
 export default Nav;

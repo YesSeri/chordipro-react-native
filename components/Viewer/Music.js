@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { createChordLine, hasLyrics } from '../../helper/music';
 import { MonoText } from '../../typography';
 

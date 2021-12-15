@@ -1,8 +1,5 @@
 const squareBracketsRe = /\[.*?]/;
 
-function parseDevComment() {
-	return null;
-}
 function replaceFirstOccurence(text, searchPhrase) {
 	return text.replace(searchPhrase, "")
 }
@@ -110,10 +107,6 @@ function parseDeclarationSubtype(line) {
 		argument: getDeclarationArguments(line)
 	}
 }
-function analyzeChord() {
-
-}
-
 
 function htmlInfo(line, modifiers) {
 
@@ -200,19 +193,19 @@ function parseSong(song) {
 // 	type: 'declaration', subtype: { command: 'start_of_chorus', argument: "" },
 // }
 //
-const exportedForTesting = {
-	parseDevComment,
-	replaceFirstOccurence,
-	removeChordNTimes,
-	getNthChordAndSpaces,
-	splitByNewline,
-	analyzeLine,
-	getLyrics,
-	getChordAndSpaces,
-	parseSong,
-	getDeclarationCommand,
-	getDeclarationArguments,
-	parseDeclarationSubtype,
-	getMusicLine,
-}
+// const exportedForTesting = {
+// 	parseDevComment,
+// 	replaceFirstOccurence,
+// 	removeChordNTimes,
+// 	getNthChordAndSpaces,
+// 	splitByNewline,
+// 	analyzeLine,
+// 	getLyrics,
+// 	getChordAndSpaces,
+// 	parseSong,
+// 	getDeclarationCommand,
+// 	getDeclarationArguments,
+// 	parseDeclarationSubtype,
+// 	getMusicLine,
+// }
 export default parseSong

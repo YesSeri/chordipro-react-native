@@ -1,9 +1,7 @@
 import React from 'react'
-import { render } from 'react-dom';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 const Declaration = ({ command, arg }) => {
-	let shouldShow = false;
 	function renderDeclaration() {
 		if (command === 'soc' || command === 'start_of_chorus') {
 			return null;
@@ -12,15 +10,12 @@ const Declaration = ({ command, arg }) => {
 			return null;
 		}
 		if (command === 'title' || command === 't') {
-			shouldShow = true;
 			return <Title arg={arg} />
 		}
 		if (command === 'subtitle' || command === 'st') {
-			shouldShow = true;
 			return <Subtitle arg={arg} />
 		}
 		if (command === 'comment' || command === 'c') {
-			shouldShow = true;
 			return <Comment arg={arg} />
 		}
 		return null;

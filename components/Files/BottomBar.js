@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
+import { StyleSheet, Button, View } from 'react-native';
 import CustomModal from './CustomModal';
-import DeleteButton from './DeleteButton';
 
 const BottomBar = ({ setFiles, setIsDeleting, isDeleting }) => {
 	const [modalVisible, setModalVisible] = useState(false);
