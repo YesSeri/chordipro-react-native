@@ -5,9 +5,6 @@ import SongContext, { initialState, reducer } from './helper/context';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Nav from './components/Nav';
 
-
-const SongContext = createContext()
-
 export default function App() {
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");

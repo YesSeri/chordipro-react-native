@@ -30,7 +30,7 @@ function getNthChordAndSpaces(text, n) {
 function getChordAndSpaces(text) {
 	let i = 1;
 	let chordSpaceArr = [];
-	while (true) {
+	for (; ;) {
 		const chordInfo = getNthChordAndSpaces(text, i);
 		i++;
 		if (!chordInfo) {
@@ -215,4 +215,4 @@ const exportedForTesting = {
 	parseDeclarationSubtype,
 	getMusicLine,
 }
-module.exports = { exportedForTesting, parseSong }
+export default parseSong

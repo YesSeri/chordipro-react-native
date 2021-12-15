@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import Declaration from './Declaration'
 import Music from './Music'
-import { parseSong } from '../../helper/parser'
+import parseSong from '../../helper/parser'
 
 const Song = ({ content }) => {
 	const [parsed, setParsed] = useState([])
