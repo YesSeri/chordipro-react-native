@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
-import { View, Button, StyleSheet, TextInput } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Error from '../components/Error';
 import SongContext from '../helper/state';
 import { noFileErrorMessage } from '../helper/ErrorMessages';
 import { saveData } from '../storage';
+import TextEditor from '../components/TextEditor';
 
 const Editor = () => {
 	const [hasChanged, setHasChanged] = useState(false)
@@ -21,13 +22,13 @@ const Editor = () => {
 		<SafeAreaView style={styles.container}>
 			{hasFile ?
 				<View style={styles.container}>
-					<TextInput style={styles.textInput} placeholder="Enter song in chordpro format. View example song for more details. " autoCorrect={false} keyboardType='visible-password' value={content} onChangeText={handleChange} multiline spellCheck={false}></TextInput>
-					<Button title="save" disabled={!hasChanged} onPress={handleSavePress}></Button>
+					<TextEditor onChangeText={handleChange} value={content} />
+					<Button title="save" disabled={!hasChanged} onPress={handleSavePress} />
 				</View>
 				:
 				<Error>{noFileErrorMessage}</Error>
 			}
-		</SafeAreaView>
+		</SafeAreaView >
 	)
 }
 
