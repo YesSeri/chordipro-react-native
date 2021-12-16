@@ -6,31 +6,29 @@ import { Editor, Viewer, Files } from '../../pages'
 
 const Tab = createBottomTabNavigator();
 
-
-const navOptions = (route) => {
-	function getIcon(routeName, focused) {
-		if (routeName === 'Viewer') {
-			return focused ? 'eye-outline' : 'eye';
-		}
-		if (routeName === 'Files') {
-			return focused ? 'file-tray-stacked-outline' : 'file-tray-stacked';
-		}
-		if (routeName === 'Editor') {
-			return focused ? 'create-outline' : 'create';
-		}
+function getIcon(routeName, focused) {
+	if (routeName === 'Viewer') {
+		return focused ? 'eye-outline' : 'eye';
 	}
-	return {
-		tabBarIcon: ({ focused, color, size }) => {
-			const iconName = getIcon(route.name, focused)
-			return <Ionicons name={iconName} size={size} color={color} />;
-		},
-		tabBarActiveTintColor: 'tomato',
-		tabBarInactiveTintColor: 'gray',
-		headerShown: false,
+	if (routeName === 'Files') {
+		return focused ? 'file-tray-stacked-outline' : 'file-tray-stacked';
+	}
+	if (routeName === 'Editor') {
+		return focused ? 'create-outline' : 'create';
 	}
 }
-const Nav = () => {
-	return (<NavigationContainer>
+
+const navOptions = (route) => ({
+	tabBarIcon: ({ focused, color, size }) => {
+		const iconName = getIcon(route.name, focused)
+		return <Ionicons name={iconName} size={size} color={color} />;
+	},
+	tabBarActiveTintColor: 'tomato',
+	tabBarInactiveTintColor: 'gray',
+	headerShown: false,
+})
+const Nav = () => (
+	<NavigationContainer>
 		<Tab.Navigator
 			screenOptions={({ route }) => navOptions(route)}
 		>
@@ -39,13 +37,12 @@ const Nav = () => {
 			))}
 		</Tab.Navigator>
 	</NavigationContainer>
-	)
-}
+)
 
 const tabs = [
 	{ name: "Editor", component: Editor },
-	{ name: "Files", component: Files },
 	{ name: "Viewer", component: Viewer },
+	{ name: "Files", component: Files },
 ]
 
 export default Nav;
