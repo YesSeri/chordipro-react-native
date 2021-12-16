@@ -13,7 +13,5 @@ It's no place for the [A]old
 When you [D]first took my [Bm]hand
 On a [D]cold Christmas [G]Eve
 You [D]promised me
-Broadway was [A]waiting for [D]me
-You were [D]handsome
-roadway was [A]waiting for [D]me`
+Broadway was [A]waiting for [D]me`
 export { titleData, contentData }

@@ -2,32 +2,35 @@ import React, { useContext } from 'react'
 import { StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Song from '../components/Viewer/Song'
-import SongContext from '../helper/context';
+import SongContext from '../helper/state';
 import Error from '../components/Error';
-import { createContentErrorMessage, selectFileErrorMessage } from '../helper/ErrorMessages';
+import { noContentErrorMessage, noFileErrorMessage } from '../helper/ErrorMessages';
 
 const Viewer = () => {
 	const { state: { content, title } } = useContext(SongContext)
-	// console.log({ content, title }, !!title && !!content)
-	const hasFile = !!title && !!content;
-	const hasNoContent = !!title && !content
-	const message = hasNoContent ? createContentErrorMessage : selectFileErrorMessage
+	const fileExists = !!title;
+	const fileExistsButIsEmpty = fileExists && !content
+	const errorMessage = fileExistsButIsEmpty ? noContentErrorMessage : noFileErrorMessage
 	return (
 		<SafeAreaView style={styles.container}>
-			{hasFile ?
-				<ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }} >
+			{fileExists ?
+				<ScrollView contentContainerStyle={styles.innerContainer} >
 					<Song content={content} />
 				</ScrollView >
 				:
-				<Error>{message}</Error>
+				<Error>{errorMessage}</Error>
 			}
 		</SafeAreaView>
 	)
 }
 
 const styles = StyleSheet.create({
+	innerContainer: {
+		flexGrow: 1,
+		justifyContent: 'center',
+	},
 	title: {
-		fontSize: 30
+		fontSize: 30,
 	},
 	container: {
 		flex: 1,

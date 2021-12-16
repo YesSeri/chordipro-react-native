@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import SongContext, { initialState, reducer } from './helper/context';
+import SongContext, { initialState, reducer } from './helper/state';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Nav from './components/Nav';
 import { importAllKeys, saveData } from './storage'

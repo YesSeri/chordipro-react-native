@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react'
 import { View, Button, StyleSheet, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Error from '../components/Error';
-import SongContext from '../helper/context';
-import { selectFileErrorMessage } from '../helper/ErrorMessages';
+import SongContext from '../helper/state';
+import { noFileErrorMessage } from '../helper/ErrorMessages';
 import { saveData } from '../storage';
 
 const Editor = () => {
@@ -25,7 +25,7 @@ const Editor = () => {
 					<Button title="save" disabled={!hasChanged} onPress={handleSavePress}></Button>
 				</View>
 				:
-				<Error>{selectFileErrorMessage}</Error>
+				<Error>{noFileErrorMessage}</Error>
 			}
 		</SafeAreaView>
 	)

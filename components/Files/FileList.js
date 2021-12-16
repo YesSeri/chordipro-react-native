@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Alert, Text, View, Pressable } from 'react-native
 import { Heading } from '../../typography';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { deleteData, getData, importAllKeys } from '../../storage';
-import SongContext from '../../helper/context';
+import SongContext from '../../helper/state';
 
 const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
 	const { dispatch } = useContext(SongContext)
