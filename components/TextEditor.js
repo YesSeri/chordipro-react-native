@@ -7,7 +7,6 @@ const TextEditor = ({ value = "", onChangeText }) => {
 			style={styles.textInput}
 			placeholder="Enter song in chordpro format. View example song for more details."
 			autoCorrect={false}
-			keyboardType='visible-password'
 			value={value}
 			onChangeText={onChangeText}
 			multiline

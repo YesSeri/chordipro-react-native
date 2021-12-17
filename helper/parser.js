@@ -54,6 +54,16 @@ function splitByNewline(text) {
 	return text.replace(/\r/g, "").split(/\n/);
 }
 
+// Found here https://stackoverflow.com/questions/50318277/how-to-validate-brackets
+function validateBrackets(input) {
+	let tmp = 0;
+	for (const c of input) {
+		if (c === '[') tmp++;
+		else if (c === ']' && --tmp < 0) return false; // Unexpected  ')' 
+	}
+	return tmp === 0; // False if unbalanced
+}
+
 // Looks at line and figures out if it is 
 // - declaration {} 
 // - comment #
@@ -69,9 +79,10 @@ function analyzeLine(line) {
 	if (line.trim().charAt(0) === '{') {
 		return "declaration"
 	}
-	if (line.includes('[')) {
+	if (line.includes('[') && validateBrackets(line)) {
 		return "music"
 	}
+	// If nothing matches it must be some sort of line where we just want to print text. Lets call it acapella.
 	return 'acapella'
 }
 
