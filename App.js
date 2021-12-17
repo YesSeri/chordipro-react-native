@@ -5,14 +5,14 @@ import Nav from './components/Nav';
 import { importAllKeys, saveData } from './storage'
 import { titleData, contentData } from './helper/data'
 
-async function setDefaultData() {
+// Sets default data if there is no data in asyncstorage
+(async function () {
 	const keys = await importAllKeys()
 	if (keys.length === 0) {
 		saveData(contentData, titleData)
 	}
-}
+})()
 
-setDefaultData()
 export default function App() {
 	const [state, dispatch] = useReducer(reducer, initialState)
 	return (

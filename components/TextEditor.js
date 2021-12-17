@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native';
 
-const TextEditor = ({ value = "", onChangeText }) => {
+const TextEditor = ({ value = "", onChangeText, style }) => {
 	return (
 		<TextInput
-			style={styles.textInput}
+			style={[styles.textInput, style]}
 			placeholder="Enter song in chordpro format. View example song for more details."
 			autoCorrect={false}
 			value={value}
@@ -17,6 +17,7 @@ const TextEditor = ({ value = "", onChangeText }) => {
 }
 
 const styles = StyleSheet.create({
+	textInput: { flex: 1 }
 });
 
 export default TextEditor

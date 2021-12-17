@@ -21,9 +21,13 @@ const Editor = () => {
 	return (
 		<SafeAreaView style={styles.container}>
 			{hasFile ?
+
 				<View style={styles.container}>
-					<TextEditor onChangeText={handleChange} value={content} />
+					<View style={styles.container}>
+						<TextEditor onChangeText={handleChange} value={content} />
+					</View>
 					<Button title="save" disabled={!hasChanged} onPress={handleSavePress} />
+
 				</View>
 				:
 				<Error>{noFileErrorMessage}</Error>
