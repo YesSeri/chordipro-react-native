@@ -21,13 +21,11 @@ const Editor = () => {
 	return (
 		<SafeAreaView style={styles.container}>
 			{hasFile ?
-
 				<View style={styles.container}>
 					<View style={styles.container}>
 						<TextEditor onChangeText={handleChange} value={content} />
 					</View>
 					<Button title="save" disabled={!hasChanged} onPress={handleSavePress} />
-
 				</View>
 				:
 				<Error>{noFileErrorMessage}</Error>
@@ -40,9 +38,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-	textInput: {
-		flex: 1,
-	}
 });
 
 export default Editor
