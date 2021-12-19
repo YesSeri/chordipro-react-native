@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { deleteData, getData, importAllKeys } from '../../storage';
 import SongContext from '../../helper/state';
 
-const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
+const FileList = ({ files = [], navigation, isDeleting }) => {
 	const { dispatch } = useContext(SongContext)
 	const handleClick = async (key) => {
 		if (isDeleting) {
@@ -41,11 +41,11 @@ const FileList = ({ files = [], navigation, isDeleting, setFiles }) => {
 	async function deleteFile(key) {
 		await deleteData(key)
 		const keys = await importAllKeys();
-		setFiles(keys);
+		dispatch({ type: 'setFiles', payload: { files: keys } })
 	}
 	async function openFile(key) {
 		const content = await getData(key)
-		dispatch({ type: 'newFile', payload: { title: key, content } })
+		dispatch({ type: 'openFile', payload: { title: key, content } })
 		if (content) {
 			navigation.navigate('Viewer')
 		} else {

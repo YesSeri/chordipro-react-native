@@ -2,7 +2,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Editor, Viewer, Files } from '../../pages'
+import { Editor, Viewer, Files, Finder } from '../../pages'
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +15,9 @@ function getIcon(routeName, focused) {
 	}
 	if (routeName === 'Editor') {
 		return focused ? 'create-outline' : 'create';
+	}
+	if (routeName === 'Finder') {
+		return focused ? 'search-circle-outline' : 'search-circle';
 	}
 }
 
@@ -40,9 +43,10 @@ const Nav = () => (
 )
 
 const tabs = [
+	{ name: "Files", component: Files },
+	{ name: "Finder", component: Finder },
 	{ name: "Editor", component: Editor },
 	{ name: "Viewer", component: Viewer },
-	{ name: "Files", component: Files },
 ]
 
 export default Nav;

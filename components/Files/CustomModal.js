@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Modal, StyleSheet, TextInput, Button, View } from 'react-native';
+import SongContext from '../../helper/state';
 import { importAllKeys, saveData } from '../../storage';
 
-const CustomModal = ({ visible, setVisible, setFiles }) => {
+const CustomModal = ({ visible, setVisible }) => {
 	const [name, setName] = useState("")
+	const { dispatch } = useContext(SongContext)
 	function leaveModal() {
 		setName("");
 		setVisible(false);
@@ -15,7 +17,7 @@ const CustomModal = ({ visible, setVisible, setFiles }) => {
 	async function createFile(name) {
 		await saveData("", name);
 		const keys = await importAllKeys();
-		setFiles(keys);
+		dispatch({ type: 'setFiles', payload: { files: keys } })
 	}
 	return (
 		<Modal
