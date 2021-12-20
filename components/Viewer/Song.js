@@ -8,7 +8,9 @@ import { MonoText } from '../../typography';
 const Song = ({ content }) => {
 	const [parsed, setParsed] = useState([])
 	useEffect(() => {
-		setParsed(parseSong(content))
+		const parsedContent = parseSong(content)
+		console.log(parsedContent)
+		setParsed(parsedContent)
 	}, [content])
 
 	return (

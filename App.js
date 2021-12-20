@@ -5,7 +5,7 @@ import Nav from './components/Nav';
 import { importAllKeys, saveData } from './storage'
 import { titleData, contentData } from './helper/data'
 
-// Sets default data if there is no data in asyncstorage
+// Sets default data if there is no data in asyncstorage. A song by The Pogues.
 (async function () {
 	const keys = await importAllKeys()
 	if (keys.length === 0) {
