@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 const SongContext = createContext()
 
-export const initialState = { title: "hallelujah", content: "[Gmaj7]I am h[Bm7][Dm7][Em7]ap[Cmaj]p[Gm]y", files: [] };
+export const initialState = { title: "hallelujah", content: "[Gm][Dm]", files: [] };
 
 
 export function reducer(state, action) {

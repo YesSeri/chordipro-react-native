@@ -32,12 +32,18 @@ const Song = ({ content }) => {
 // I use this to insert dashes in the places where the chords overlap.
 function fixContent(content) {
 	const lines = content.replace(/\r/g, "").split("\n");
+	// Fix the lines and then return the lines seperated with a new line.
 	return lines.map(line => fixLine(line)).reduce((acc, curr) => acc + '\n' + curr)
 }
+
 // The regex is to make sure when there is only chords then no dashes should be added.
 function fixLine(line) {
-	const a = line.replace(/\s*(?:\[[^\]]*\]|\([^)]*\))\s*/g, "")
-	if (a === "") {
+	// This regex extracts all text outside brackets. Found here: https://stackoverflow.com/questions/64040421/js-extract-all-text-outside-the-brackets
+	const test = line.replace(/\s*(?:\[[^\]]*\]|\([^)]*\))\s*/g, "")
+	// Without this test a row with two chords or more e.g. [Gm][Am] will get a dash that I use to extend text under it. 
+	// I also have a special case in the Music component to handle when there is only chords, without lyrics. It should not be positioned absolutely.
+	// Instead it gets shown normally
+	if (test === "") {
 		return line
 	}
 
@@ -51,12 +57,15 @@ function fixLine(line) {
 			startCounter = true;
 		}
 		// This means we reached end of chord. 
+		if (startCounter) {
+			len++;
+		}
 		if (arr[i] === ']') {
 			let numDashes;
 			// We check as many steps forward in the array as there are chars in the chord. 
 			for (let j = 0; j < len; j++) {
 				if (arr[i + j] === '[') {
-					numDashes = len - j + 1
+					numDashes = len - j
 				}
 			}
 
@@ -67,12 +76,10 @@ function fixLine(line) {
 			len = 0;
 		}
 
-		if (startCounter) {
-			len++;
-		}
 	}
 	return fixedContent
 }
+
 const SongElement = ({ el }) => {
 	switch (el.type) {
 		case 'declaration':
@@ -83,9 +90,9 @@ const SongElement = ({ el }) => {
 			return <Music info={el}></Music>
 		case 'acapella':
 			return <Acapella>{el.content.lyrics}</Acapella>
+		// This case gets triggered on a dev comment, that starts with an X. They should never be shown.
 		default:
 			return null
-
 	}
 }
 
