@@ -5,6 +5,7 @@ import Song from '../components/Viewer/Song'
 import SongContext from '../helper/state';
 import Error from '../components/Error';
 import { noContentErrorMessage, noFileErrorMessage } from '../helper/ErrorMessages';
+import { Heading } from '../typography';
 
 const Viewer = () => {
 	const { state: { content, title } } = useContext(SongContext)
@@ -13,6 +14,7 @@ const Viewer = () => {
 	const errorMessage = fileExistsButIsEmpty ? noContentErrorMessage : noFileErrorMessage
 	return (
 		<SafeAreaView style={styles.container}>
+			<Heading>Viewer</Heading>
 			{fileExists ?
 				<ScrollView contentContainerStyle={styles.innerContainer} >
 					<Song content={content} />

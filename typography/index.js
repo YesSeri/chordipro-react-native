@@ -14,7 +14,7 @@ export const SubHeading = ({ style, children, ...restProps }) => (
 )
 
 // const fontFamily = Platform.OS === 'ios' ? 'Courier' : 'monospace'
-const fontFamily = 'Inconsolata, monospace'
+const fontFamily = 'Inconsolata-Regular, Inconsolata, monospace'
 const styles = StyleSheet.create({
 	text: {
 		fontFamily,

@@ -27,14 +27,6 @@ const styles = StyleSheet.create({
 	innerContainer: {
 		alignSelf: 'center',
 	},
-	// 	innerContainer: {
-	// 		flex: 1,
-	// 		flexDirection: 'row',
-	// 		justifyContent: 'space-between'
-	// 	},
-	// 	item: { textAlign: 'center', paddingBottom: 10 },
-	// 	container: { paddingTop: 10 },
-	// 	ionicon: { padding: 10 }
 });
 
 export default Finder

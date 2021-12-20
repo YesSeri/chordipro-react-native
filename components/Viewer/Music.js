@@ -12,7 +12,7 @@ const Music = ({ info }) => {
 const MusicLine = ({ content }) => {
 	// If there is no lyrics, only chords, just print the line cleanly.
 	if (content.lyrics.trim() === "") {
-		return <Text>{content.acc.map((chordObj, i) => <MonoText style={styles.chord} key={i}>{chordObj.chord} </MonoText>)}</Text>
+		return <Text>{content.acc.map((chordObj, i) => <MonoText key={i}>{chordObj.chord} </MonoText>)}</Text>
 	}
 	let lyrics = content.lyrics
 	let result = [];
@@ -42,7 +42,7 @@ const MusicLine = ({ content }) => {
 
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
 const styles = StyleSheet.create({
-	chord: { color: 'red', left: 0, top: -25, position: 'absolute' },
+	chord: { color: 'black', left: 0, top: -30, position: 'absolute' },
 	lyric: { lineHeight: 30 },
 	chordContainer: { position: 'relative', color: 'white' },
 	container: {
