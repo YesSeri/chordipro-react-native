@@ -45,8 +45,6 @@ function getMusicLine(line) {
 	return {
 		acc: getChordAndSpaces(line), lyrics: getLyrics(line)
 	}
-
-
 }
 
 

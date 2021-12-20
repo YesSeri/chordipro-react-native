@@ -8,8 +8,9 @@ import { MonoText } from '../../typography';
 const Song = ({ content }) => {
 	const [parsed, setParsed] = useState([])
 	useEffect(() => {
-		const parsedContent = parseSong(content)
-		console.log(parsedContent)
+		let fixedContent = fixContent(content);
+		console.log({ fixedContent })
+		const parsedContent = parseSong(fixedContent)
 		setParsed(parsedContent)
 	}, [content])
 
@@ -24,6 +25,54 @@ const Song = ({ content }) => {
 			})}
 		</View>
 	)
+}
+
+// This is created to solve a problem that happens if two chords are next to each other like this:
+// L[Em][G]et it be
+// The absolute positioning of the chords will overlay the two chords. Not good!
+// I use this to insert dashes in the places where the chords overlap.
+// The regex is to make sure when there is only chords then no dashes should be added.
+
+function fixContent(content) {
+	const lines = content.replace(/\r/g, "").split("\n");
+	return lines.map(line => fixLine(line)).reduce((acc, curr) => acc + '\n' + curr)
+}
+function fixLine(line) {
+	const a = line.replace(/\s*(?:\[[^\]]*\]|\([^)]*\))\s*/g, "")
+	if (a === "") {
+		return line
+	}
+
+	const arr = line.split("");
+	let fixedContent = "";
+	let len = 0;
+	let startCounter = false;
+	for (let i = 0; i < arr.length; i++) {
+		fixedContent += arr[i]
+		if (arr[i] === '[') {
+			startCounter = true;
+		}
+		if (arr[i] === ']') {
+			let numDashes;
+			for (let j = 0; j < len; j++) {
+				if (arr[i + j] === '[') {
+					numDashes = len - j + 1
+				}
+			}
+			fixedContent += "-".repeat(numDashes)
+			startCounter = false;
+			len = 0;
+		}
+
+		if (startCounter) {
+			len++;
+		}
+		if (arr[i] === "\n") {
+			startCounter = false;
+			len = 0;
+		}
+	}
+	return fixedContent
 }
 const SongElement = ({ el }) => {
 	switch (el.type) {

@@ -8,7 +8,6 @@ import { noContentErrorMessage, noFileErrorMessage } from '../helper/ErrorMessag
 
 const Viewer = () => {
 	const { state: { content, title } } = useContext(SongContext)
-	console.log(content)
 	const fileExists = !!title;
 	const fileExistsButIsEmpty = fileExists && !content
 	const errorMessage = fileExistsButIsEmpty ? noContentErrorMessage : noFileErrorMessage
