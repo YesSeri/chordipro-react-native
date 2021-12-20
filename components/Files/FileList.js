@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { Platform, StyleSheet, Alert, Text, View, Pressable } from 'react-native';
-import { Heading } from '../../typography';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Platform, Alert } from 'react-native';
 import { deleteData, getData, importAllKeys } from '../../storage';
 import SongContext from '../../helper/state';
+import ListItem from '../reuseable/ListItem';
+import List from '../reuseable/List';
 
 const FileList = ({ files = [], navigation, isDeleting }) => {
 	const { dispatch } = useContext(SongContext)
@@ -54,28 +54,12 @@ const FileList = ({ files = [], navigation, isDeleting }) => {
 
 	}
 	return (
-		<View>
-			<Heading>FILES</Heading>
-			{files.map((key, i) => (
-				<Pressable key={i} onPress={() => handleClick(key)}>
-					<View style={styles.container}>
-						<Ionicons name={"document-outline"} />
-						<Text style={styles.titleText}>
-							{key}
-						</Text>
-					</View>
-				</Pressable>
+		<List>
+			{files.map((el, i) => (
+				<ListItem key={i} icon='document-outline' onPress={() => handleClick(el)} value={el} />
 			))}
-		</View >
+		</List>
 	)
 }
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between'
-	},
-});
 
 export default FileList

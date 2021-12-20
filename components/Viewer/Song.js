@@ -49,9 +49,6 @@ const styles = StyleSheet.create({
 		paddingTop: 8,
 	},
 	outer: {
-		// backgroundColor: 'white',
-		// alignSelf: 'flex-start',
-		// margin: 'auto',
 		flex: 1,
 	}
 });

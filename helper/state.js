@@ -16,7 +16,7 @@ export function reducer(state, action) {
 		case 'noFile':
 			return { ...state, title: "", content: "" };
 		default:
-			throw new Error();
+			throw new Error("Invalid action type in reducer function. Please use an action that exists.");
 	}
 }
 
