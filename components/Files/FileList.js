@@ -15,7 +15,6 @@ const FileList = ({ files = [], navigation, isDeleting }) => {
 		}
 	}
 	async function promptDelete(key) {
-		console.log('alert')
 		const title = 'Delete File'
 		const msg = `Are you sure you want to delete ${key}?`
 		if (Platform.OS === 'web') {

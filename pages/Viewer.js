@@ -8,6 +8,7 @@ import { noContentErrorMessage, noFileErrorMessage } from '../helper/ErrorMessag
 
 const Viewer = () => {
 	const { state: { content, title } } = useContext(SongContext)
+	console.log(content)
 	const fileExists = !!title;
 	const fileExistsButIsEmpty = fileExists && !content
 	const errorMessage = fileExistsButIsEmpty ? noContentErrorMessage : noFileErrorMessage
@@ -27,7 +28,7 @@ const Viewer = () => {
 const styles = StyleSheet.create({
 	innerContainer: {
 		flexGrow: 1,
-		justifyContent: 'center',
+		alignSelf: 'center',
 	},
 	title: {
 		fontSize: 30,

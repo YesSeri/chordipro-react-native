@@ -1,46 +1,42 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native';
-import { createChordLine, hasLyrics } from '../../helper/music';
+import { Text, StyleSheet, View } from 'react-native';
+// import { createChordLine, hasLyrics } from '../../helper/music';
 import { MonoText } from '../../typography';
 
 const Music = ({ info }) => {
-	const lineHasLyrics = hasLyrics(info.content.lyrics)
+	const line = createLine(info.content);
 	return (
-		<View style={styles.container}>
-			<Chords hasLyrics={lineHasLyrics} acc={info.content.acc} />
-			{lineHasLyrics && <Lyrics lyrics={info.content.lyrics} />}
-		</View>
+		<Text>{line}</Text>
 	)
 }
 
-const Chords = ({ acc, hasLyrics }) => {
-	let line = "";
-	if (hasLyrics) {
-		line = createChordLine(acc)
-	} else {
-		acc.forEach(el => {
-			const compare = 7 - el.chord.length
-			line += el.chord + " " + " ".repeat(compare < 0 ? 0 : compare);
-		});
-	}
-	return (
-		<MonoText>
-			{line}
-		</MonoText>
-	)
-}
+const createLine = (content) => {
+	let lyrics = content.lyrics
+	let rLyrics = [];
+	let rest = content.lyrics
+	let prev = 0;
+	content.acc.forEach(chordObj => {
+		rLyrics.push(<>
+			<MonoText style={styles.lyric}>{lyrics.slice(prev, chordObj.position)}
+			</MonoText>
+			<View style={styles.chordContainer}>
+				<MonoText style={styles.chord}>{chordObj.chord}</MonoText>
+			</View>
+		</>)
+		rest = lyrics.slice(chordObj.position)
+		prev = chordObj.position
+	})
+	rLyrics.push(<MonoText style={styles.lyric}>
+		{rest}
+	</MonoText>)
+	return rLyrics
 
-
-const Lyrics = ({ lyrics }) => {
-	return (
-		<MonoText>
-			{lyrics}
-		</MonoText>
-	)
 }
 const styles = StyleSheet.create({
+	chord: { color: 'red', left: 0, top: -25, position: 'absolute' },
+	lyric: { lineHeight: 30 },
+	chordContainer: { position: 'relative', color: 'white' },
 	container: {
 	}
 })
-
 export default Music
