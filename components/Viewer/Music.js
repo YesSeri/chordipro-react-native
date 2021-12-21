@@ -43,7 +43,7 @@ const MusicLine = ({ content }) => {
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
 const styles = StyleSheet.create({
 	chord: { color: 'black', left: 0, top: -30, position: 'absolute' },
-	lyric: { lineHeight: 30 },
+	lyric: { lineHeight: 33 },
 	chordContainer: { position: 'relative', color: 'white' },
 	container: {
 	}

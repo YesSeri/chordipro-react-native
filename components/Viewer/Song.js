@@ -15,14 +15,11 @@ const Song = ({ content }) => {
 
 	return (
 		<View style={styles.outer}>
-			{parsed.map((el, i) => {
-				console.log(el)
-				return (
-					<View key={i} style={styles.container}>
-						<SongElement el={el} />
-					</View>
-				)
-			})}
+			{parsed.map((el, i) => (
+				<View key={i} style={styles.container}>
+					<SongElement el={el} />
+				</View>
+			))}
 		</View>
 	)
 }
