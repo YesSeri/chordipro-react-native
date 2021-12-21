@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Declaration from './Declaration'
 import Music from './Music'
 import parseSong from '../../helper/parser'
@@ -16,6 +16,7 @@ const Song = ({ content }) => {
 	return (
 		<View style={styles.outer}>
 			{parsed.map((el, i) => {
+				console.log(el)
 				return (
 					<View key={i} style={styles.container}>
 						<SongElement el={el} />
@@ -99,7 +100,7 @@ const SongElement = ({ el }) => {
 const Acapella = ({ children }) => <MonoText>{children}</MonoText>
 
 
-const Empty = () => <Text>{'\n'}</Text>
+const Empty = () => <View style={{ height: 10 }}></View>
 
 const styles = StyleSheet.create({
 	container: {

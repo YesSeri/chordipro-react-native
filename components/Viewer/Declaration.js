@@ -24,23 +24,27 @@ const Declaration = ({ command, arg }) => {
 }
 const Comment = ({ arg }) => {
 	return (
-		<Text style={styles.comment}>{arg}</Text>
+		<Text style={[styles.declaration, styles.comment]}>{arg}</Text>
 	)
 }
 const Title = ({ arg }) => {
 	return (
-		<Text style={styles.title}>{arg}</Text>
+		<Text style={[styles.declaration, styles.title]}>{arg}</Text>
 	)
 }
 const Subtitle = ({ arg }) => {
 	return (
-		<Text style={styles.subtitle}>{arg}</Text>
+		<Text style={[styles.declaration, styles.subtitle]}>{arg}</Text>
 	)
 }
 
 const styles = StyleSheet.create({
+	declaration: {
+		margin: 5,
+
+	},
 	title: {
-		fontSize: 25,
+		fontSize: 20,
 	},
 	subtitle: {
 		fontSize: 15,

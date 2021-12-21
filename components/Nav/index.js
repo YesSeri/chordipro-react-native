@@ -43,10 +43,10 @@ const Nav = () => (
 )
 
 const tabs = [
-	{ name: "Viewer", component: Viewer },
 	{ name: "Files", component: Files },
-	{ name: "Finder", component: Finder },
+	{ name: "Viewer", component: Viewer },
 	{ name: "Editor", component: Editor },
+	{ name: "Finder", component: Finder },
 ]
 
 export default Nav;
