@@ -8,6 +8,7 @@
 		"web": "expo start --web",
 		"start": "react-native start",
 		"releaseTest": "npx react-native run-android --variant=release",
+		"createADB": "./android/gradlew bundleRelease",
 		"linting": "eslint . --ext .js"
 	},
 	"dependencies": {
