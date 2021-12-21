@@ -69,14 +69,12 @@ function fixLine(line) {
 					numDashes = len - j
 				}
 			}
-
 			// If we find a new square bracket, we add as many dashes we need to make the chords not intersect, plus one extra to add some space.
 			fixedContent += "-".repeat(numDashes)
 			// This resets the counter.
 			startCounter = false;
 			len = 0;
 		}
-
 	}
 	return fixedContent
 }
