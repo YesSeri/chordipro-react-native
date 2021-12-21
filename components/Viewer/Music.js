@@ -11,39 +11,49 @@ const Music = ({ info }) => {
 
 const MusicLine = ({ content }) => {
 	// If there is no lyrics, only chords, just print the line cleanly.
-	if (content.lyrics.trim() === "") {
-		return <Text>{content.acc.map((chordObj, i) => <MonoText key={i}>{chordObj.chord} </MonoText>)}</Text>
-	}
-	let lyrics = content.lyrics
 	let result = [];
-	let rest = lyrics
-	let prev = 0;
-	content.acc.forEach((chordObj, i) => {
+	if (content.lyrics.trim() === "") {
+		result.push(content.acc.map((chordObj, i) => <MonoText key={i}>{chordObj.chord} </MonoText>))
+	} else {
+		let lyrics = content.lyrics
+		let rest = lyrics
+		let prev = 0;
+		content.acc.forEach((chordObj, i) => {
+			result.push(
+				<Container key={i}>
+					<Lyrics style={styles.lyric}>{lyrics.slice(prev, chordObj.position)}
+					</Lyrics>
+					<Chord>{chordObj.chord}</Chord>
+				</Container>)
+			rest = lyrics.slice(chordObj.position)
+			prev = chordObj.position
+		})
 		result.push(
-			<Text key={i} style={styles.musicContainer}>
-				<MonoText style={styles.lyric}>{lyrics.slice(prev, chordObj.position)}
-				</MonoText>
-				<View style={styles.chordContainer}>
-					<MonoText style={styles.chord}>{chordObj.chord}</MonoText>
-				</View>
-			</Text>)
-		rest = lyrics.slice(chordObj.position)
-		prev = chordObj.position
-	})
-	result.push(
-		<Text key={-3} style={styles.musicContainer}>
-			<MonoText style={styles.lyric}>
-				{rest}
-			</MonoText>
-		</Text>
-	)
+			<Container key={-1} >
+				<Lyrics>
+					{rest}
+				</Lyrics>
+			</Container>
+		)
+	}
 	return <Text>{result}</Text>
+}
+const Container = ({ children, ...restProps }) => {
+	return <Text style={styles.musicContainer} {...restProps}>{children}</Text>
+}
+const Chord = ({ children }) => {
+	return <View style={styles.chordContainer}>
+		<MonoText style={styles.chord}>{children}</MonoText>
+	</View>
+}
+const Lyrics = ({ children }) => {
+	return <MonoText style={styles.lyric}>{children}</MonoText>
 }
 
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
 const styles = StyleSheet.create({
 	chord: { color: 'black', left: 0, top: -30, position: 'absolute' },
-	lyric: { lineHeight: 50 },
+	lyric: { lineHeight: '300%' },
 	chordContainer: { position: 'relative', color: 'white' },
 })
 export default Music
