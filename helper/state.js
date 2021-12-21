@@ -2,7 +2,7 @@ import { createContext } from "react";
 
 const SongContext = createContext()
 
-export const initialState = { title: "", content: "", files: [] };
+export const initialState = { title: "Pogues", content: "{t:Fairytale Of New York}\n{st:The Pogues}\n [G/D]    [D]  [G/D]     [Asus4/E]        [D]  [G/D]     \nThey've got [D]cars, big as [A]bars, they've got [Bm]rivers of [G]gold\nBut the [D]wind goes right through you\nIt's no place for the [A]old", files: [] };
 
 
 export function reducer(state, action) {

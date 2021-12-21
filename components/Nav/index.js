@@ -6,8 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Editor, Viewer, Files } from '../../pages'
 
 const tabs = [
-	{ name: "Files", component: Files },
 	{ name: "Viewer", component: Viewer },
+	{ name: "Files", component: Files },
 	{ name: "Editor", component: Editor },
 	// { name: "Finder", component: Finder },
 ]

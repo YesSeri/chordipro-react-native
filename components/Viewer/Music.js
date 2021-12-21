@@ -20,7 +20,7 @@ const MusicLine = ({ content }) => {
 	let prev = 0;
 	content.acc.forEach((chordObj, i) => {
 		result.push(
-			<Text key={i}>
+			<Text key={i} style={styles.musicContainer}>
 				<MonoText style={styles.lyric}>{lyrics.slice(prev, chordObj.position)}
 				</MonoText>
 				<View style={styles.chordContainer}>
@@ -31,7 +31,7 @@ const MusicLine = ({ content }) => {
 		prev = chordObj.position
 	})
 	result.push(
-		<Text key={-3}>
+		<Text key={-3} style={styles.musicContainer}>
 			<MonoText style={styles.lyric}>
 				{rest}
 			</MonoText>
@@ -43,9 +43,7 @@ const MusicLine = ({ content }) => {
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
 const styles = StyleSheet.create({
 	chord: { color: 'black', left: 0, top: -30, position: 'absolute' },
-	lyric: { lineHeight: 33 },
+	lyric: { lineHeight: 50 },
 	chordContainer: { position: 'relative', color: 'white' },
-	container: {
-	}
 })
 export default Music

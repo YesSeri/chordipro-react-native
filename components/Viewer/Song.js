@@ -15,11 +15,14 @@ const Song = ({ content }) => {
 
 	return (
 		<View style={styles.outer}>
-			{parsed.map((el, i) => (
-				<View key={i} style={styles.container}>
-					<SongElement el={el} />
-				</View>
-			))}
+			{parsed.map((el, i) => {
+				console.log(el)
+				return (
+					<View key={i} style={styles.container}>
+						<SongElement el={el} />
+					</View>
+				)
+			})}
 		</View>
 	)
 }
@@ -99,7 +102,6 @@ const Empty = () => <View style={{ height: 10 }}></View>
 
 const styles = StyleSheet.create({
 	container: {
-		paddingTop: 8,
 	},
 	outer: {
 		flex: 1,
