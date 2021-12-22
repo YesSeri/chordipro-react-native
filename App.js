@@ -3,13 +3,15 @@ import SongContext, { initialState, reducer } from './helper/state';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Nav from './components/Nav';
 import { importAllKeys, saveData } from './storage'
-import { titleData, contentData } from './helper/data'
+import { songArr } from './helper/data'
 
 // Sets default data if there is no data in asyncstorage. A song by The Pogues.
 (async function () {
 	const keys = await importAllKeys()
 	if (keys.length === 0) {
-		saveData(contentData, titleData)
+		songArr.forEach(([title, content]) => {
+			saveData(content, title)
+		});
 	}
 })()
 

@@ -39,7 +39,7 @@ const MusicLine = ({ content }) => {
 	return <Text>{result}</Text>
 }
 const Container = ({ children, ...restProps }) => {
-	return <Text style={styles.musicContainer} {...restProps}>{children}</Text>
+	return <View style={styles.container} {...restProps}>{children}</View>
 }
 const Chord = ({ children }) => {
 	return <View style={styles.chordContainer}>
@@ -52,8 +52,16 @@ const Lyrics = ({ children }) => {
 
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
 const styles = StyleSheet.create({
-	chord: { color: 'black', left: 0, top: -30, position: 'absolute' },
-	lyric: { lineHeight: '300%' },
-	chordContainer: { position: 'relative', color: 'white' },
+	chord: {
+		color: 'black'
+		, left: 0, top: -15, position: 'absolute'
+	},
+	// lyric: { lineHeight: '300%' },
+	// chordContainer: { position: 'relative', color: 'white' },
+	container: {
+		flexDirection: 'row',
+		marginTop: 20,
+
+	}
 })
 export default Music
