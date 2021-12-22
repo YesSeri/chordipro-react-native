@@ -1,4 +1,4 @@
-const poguesTitleData = "Fairytale of New York"
+const poguesTitleData = "The Pogues - Fairytale of New York"
 const poguesContentData = `{t:Fairytale Of New York}
 {st:The Pogues}
  
@@ -14,7 +14,7 @@ When you [D]first took my [Bm]hand
 On a [D]cold Christmas [G]Eve
 You [D]promised me
 Broadway was [A]waiting for [D]me`
-const nordTitleData = "Jul, jul strålande jul"
+const nordTitleData = "Gustaf Nordqvist - Jul, jul strålande jul"
 const nordContentData = `{title: Jul, jul, strålande jul}
 {subtitle: Nordquist}
 
@@ -40,7 +40,7 @@ Sänk dina vita vingar
 Kom, kom, signade jul
 Sänk dina vita vingar`
 
-const hallelujahTitleData = "Hallelujah"
+const hallelujahTitleData = "Leonard Cohen - Hallelujah"
 const hallelujahContentData = `{title: Hallelujah}
 {subtitle: Cohen}
 
