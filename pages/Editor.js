@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { View, Button, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Error from '../components/Error';
 import SongContext from '../helper/state';
 import { noFileErrorMessage } from '../helper/ErrorMessages';
 import { saveData } from '../storage';
 import TextEditor from '../components/TextEditor';
+import SafeAreaViewCustom from '../components/reuseable/SafeAreaViewCustom';
 
 const Editor = () => {
 	const [hasChanged, setHasChanged] = useState(false)
@@ -16,10 +16,11 @@ const Editor = () => {
 		dispatch({ type: 'setContent', payload: { content: newContent } })
 	}
 	function handleSavePress() {
-		saveData(content, title)
+		saveData(content, title);
+		setHasChanged(false);
 	}
 	return (
-		<SafeAreaView style={styles.container}>
+		<SafeAreaViewCustom style={styles.container}>
 			{hasFile ?
 				<View style={styles.container}>
 					<View style={styles.container}>
@@ -30,7 +31,7 @@ const Editor = () => {
 				:
 				<Error>{noFileErrorMessage}</Error>
 			}
-		</SafeAreaView >
+		</SafeAreaViewCustom >
 	)
 }
 

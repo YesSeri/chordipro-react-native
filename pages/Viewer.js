@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { StyleSheet, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Song from '../components/Viewer/Song'
 import SongContext from '../helper/state';
 import Error from '../components/Error';
 import { noContentErrorMessage, noFileErrorMessage } from '../helper/ErrorMessages';
+import SafeAreaViewCustom from '../components/reuseable/SafeAreaViewCustom';
 
 const Viewer = () => {
 	const { state: { content, title } } = useContext(SongContext)
@@ -12,7 +12,7 @@ const Viewer = () => {
 	const fileExistsButIsEmpty = fileExists && !content
 	const errorMessage = fileExistsButIsEmpty ? noContentErrorMessage : noFileErrorMessage
 	return (
-		<SafeAreaView style={styles.container}>
+		<SafeAreaViewCustom>
 			{fileExists ?
 				<ScrollView contentContainerStyle={styles.innerContainer} >
 					<Song content={content} />
@@ -20,7 +20,7 @@ const Viewer = () => {
 				:
 				<Error>{errorMessage}</Error>
 			}
-		</SafeAreaView>
+		</SafeAreaViewCustom>
 	)
 }
 

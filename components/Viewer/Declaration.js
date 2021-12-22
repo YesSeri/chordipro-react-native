@@ -40,20 +40,20 @@ const Subtitle = ({ arg }) => {
 
 const styles = StyleSheet.create({
 	declaration: {
-		margin: 5,
-
+		marginTop: 5,
+		marginBottom: 5,
 	},
 	title: {
-		fontSize: 20,
+		fontSize: 25,
 	},
 	subtitle: {
-		fontSize: 15,
+		fontSize: 20,
 	},
 	comment: {
+		fontSize: 15,
 		alignSelf: "flex-start",
 		paddingLeft: 5,
 		paddingRight: 5,
-		fontSize: 12,
 		backgroundColor: 'black',
 		color: 'white',
 	}

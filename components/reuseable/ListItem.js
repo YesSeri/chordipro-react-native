@@ -17,7 +17,8 @@ const ListItem = ({ onPress, value, icon }) => {
 
 const styles = StyleSheet.create({
 	ionicon: {
-		padding: 10,
+		padding: 3,
+		color: 'black'
 	}
 });
 

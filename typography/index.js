@@ -3,7 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 
 
 export const MonoText = ({ style, children, ...restProps }) => (
-	<Text style={[style, styles.text]} {...restProps}>{children}</Text>
+	<Text style={[styles.text, style]} {...restProps}>{children}</Text>
 )
 
 export const Heading = ({ style, children, ...restProps }) => (

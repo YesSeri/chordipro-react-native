@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomBar, FileList } from '../components/Files'
 import { importAllKeys } from '../storage';
 import SongContext from '../helper/state';
 import { Heading } from '../typography';
+import SafeAreaViewCustom from '../components/reuseable/SafeAreaViewCustom';
 
 const Files = ({ navigation }) => {
 	const { state: { files }, dispatch } = useContext(SongContext)
@@ -18,19 +17,12 @@ const Files = ({ navigation }) => {
 	}, []);
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<SafeAreaViewCustom>
 			<Heading>FILES</Heading>
 			<FileList files={files} navigation={navigation} isDeleting={isDeleting} />
-			<BottomBar isDeleting={isDeleting} setIsDeleting={setIsDeleting} />
-		</SafeAreaView >
+			<BottomBar isDeleting={isDeleting} setIsDeleting={setIsDeleting} navigation={navigation} />
+		</SafeAreaViewCustom>
 	);
 }
-
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-});
 
 export default Files

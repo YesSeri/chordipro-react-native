@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 // import { Editor, Viewer, Files, Finder } from '../../pages'
 import { Editor, Viewer, Files } from '../../pages'
+import { colors } from '../../helper/designContext';
 
 const tabs = [
 	{ name: "Files", component: Files },
@@ -34,8 +35,8 @@ const navOptions = (route) => ({
 		const iconName = getIcon(route.name, focused)
 		return <Ionicons name={iconName} size={size} color={color} />;
 	},
-	tabBarActiveTintColor: 'tomato',
-	tabBarInactiveTintColor: 'gray',
+	tabBarActiveTintColor: colors.color3,
+	tabBarInactiveTintColor: 'grey',
 	headerShown: false,
 })
 const Nav = () => (
