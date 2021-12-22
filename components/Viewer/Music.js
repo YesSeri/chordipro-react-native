@@ -3,13 +3,8 @@ import { Text, StyleSheet, View } from 'react-native';
 // import { createChordLine, hasLyrics } from '../../helper/music';
 import { MonoText } from '../../typography';
 
-const Music = ({ info }) => {
-	return (
-		<MusicLine content={info.content} />
-	)
-}
 
-const MusicLine = ({ content }) => {
+const Music = ({ content }) => {
 	// If there is no lyrics, only chords, just print the line cleanly.
 	let result = [];
 	if (content.lyrics.trim() === "") {
@@ -38,30 +33,22 @@ const MusicLine = ({ content }) => {
 	}
 	return <Text>{result}</Text>
 }
-const Container = ({ children, ...restProps }) => {
-	return <View style={styles.container} {...restProps}>{children}</View>
-}
-const Chord = ({ children }) => {
-	return <View style={styles.chordContainer}>
+const Container = ({ children, ...restProps }) => (
+	<Text style={styles.musicContainer} {...restProps}>{children}</Text>
+)
+const Chord = ({ children }) => (
+	<View style={styles.chordContainer}>
 		<MonoText style={styles.chord}>{children}</MonoText>
 	</View>
-}
-const Lyrics = ({ children }) => {
-	return <MonoText style={styles.lyric}>{children}</MonoText>
-}
+)
+const Lyrics = ({ children }) => (
+	<MonoText style={styles.lyric}>{children}</MonoText>
+)
 
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
+const distance = 14;
 const styles = StyleSheet.create({
-	chord: {
-		color: 'black'
-		, left: 0, top: -15, position: 'absolute'
-	},
-	// lyric: { lineHeight: '300%' },
-	// chordContainer: { position: 'relative', color: 'white' },
-	container: {
-		flexDirection: 'row',
-		marginTop: 20,
-
-	}
+	chord: { color: 'black', left: 0, top: -distance - 7, position: 'absolute' },
+	lyric: { position: 'relative', top: distance - 7, lineHeight: '250%' },
 })
 export default Music

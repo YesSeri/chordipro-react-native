@@ -17,6 +17,7 @@ const FileList = ({ files = [], navigation, isDeleting }) => {
 	async function promptDelete(key) {
 		const title = 'Delete File'
 		const msg = `Are you sure you want to delete ${key}?`
+		// The Alert package only exists on iOs and android. 
 		if (Platform.OS === 'web') {
 			const answer = confirm(title + '\n' + msg);
 			if (answer) {

@@ -16,7 +16,6 @@ const Song = ({ content }) => {
 	return (
 		<View style={styles.outer}>
 			{parsed.map((el, i) => {
-				console.log(el)
 				return (
 					<View key={i} style={styles.container}>
 						<SongElement el={el} />
@@ -86,7 +85,7 @@ const SongElement = ({ el }) => {
 		case 'empty':
 			return <Empty />
 		case 'music':
-			return <Music info={el}></Music>
+			return <Music content={el.content}></Music>
 		case 'acapella':
 			return <Acapella>{el.content.lyrics}</Acapella>
 		// This case gets triggered on a dev comment, that starts with an X. They should never be shown.
@@ -98,7 +97,7 @@ const SongElement = ({ el }) => {
 const Acapella = ({ children }) => <MonoText>{children}</MonoText>
 
 
-const Empty = () => <View style={{ height: 10 }}></View>
+const Empty = () => <View style={{ height: 20 }}></View>
 
 const styles = StyleSheet.create({
 	container: {
