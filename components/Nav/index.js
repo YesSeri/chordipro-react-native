@@ -2,15 +2,15 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// import { Editor, Viewer, Files, Finder } from '../../pages'
-import { Editor, Viewer, Files } from '../../pages'
+import { Editor, Viewer, Files, Finder } from '../../pages'
+// import { Editor, Viewer, Files } from '../../pages'
 import { colors } from '../../helper/designContext';
 
 const tabs = [
 	{ name: "Files", component: Files },
 	{ name: "Viewer", component: Viewer },
 	{ name: "Editor", component: Editor },
-	// { name: "Finder", component: Finder },
+	{ name: "Finder", component: Finder },
 ]
 
 const Tab = createBottomTabNavigator();

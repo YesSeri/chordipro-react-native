@@ -38,12 +38,16 @@ function fixContent(content) {
 
 // The regex is to make sure when there is only chords then no dashes should be added.
 function fixLine(line) {
-	// This regex extracts all text outside brackets. Found here: https://stackoverflow.com/questions/64040421/js-extract-all-text-outside-the-brackets
-	const test = line.replace(/\s*(?:\[[^\]]*\]|\([^)]*\))\s*/g, "")
+	// Inspiration found here: https://stackoverflow.com/questions/64040421/js-extract-all-text-outside-the-brackets
+	// Improved this to only match square brackets.
+	// Replace all chords with empty string. If that results in empty string then that means that the line only has chords.
+	// If line only has chords we should not insert dashes to make the chords match with lyrics
+	const test = line.replace(/\[[^\]]*\]/g, "")
+
 	// Without this test a row with two chords or more e.g. [Gm][Am] will get a dash that I use to extend text under it. 
-	// I also have a special case in the Music component to handle when there is only chords, without lyrics. It should not be positioned absolutely.
-	// Instead it gets shown normally
-	if (test === "") {
+	// I also have a special case in the Music component to handle when there is only chords, without lyrics. 
+	// It should not be positioned absolutely. Instead it gets shown normally
+	if (test.trim() === "") {
 		return line
 	}
 
