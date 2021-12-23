@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-const titleUrl = 'https://chordipro-backend.herokuapp.com/'
+const titleUrl = 'https://chordipro-backend.uc.r.appspot.com/'
 import SongContext from '../../helper/state';
 import { importAllKeys, saveData } from '../../storage';
 import List from '../reuseable/List';
 import ListItem from '../reuseable/ListItem';
 
 function getSongUrl(id) {
-	return 'https://chordipro-backend.herokuapp.com/song/' + id;
+	return titleUrl + 'song/' + id;
 }
 
 const FinderList = ({ navigation }) => {
@@ -20,12 +20,12 @@ const FinderList = ({ navigation }) => {
 			.then(data => setSongs(data));
 	}, []);
 
-	async function handlePress(id) {
+	async function handlePress(id, artist) {
 		navigation.navigate('Files')
 		const songUrl = getSongUrl(id)
 		const response = await fetch(songUrl)
 		const data = await response.json()
-		await saveData(data.content, data.title)
+		await saveData(data.content, `${artist} - ${data.title}`)
 		const keys = await importAllKeys();
 		dispatch({ type: 'setFiles', payload: { files: keys } })
 	}
@@ -33,8 +33,8 @@ const FinderList = ({ navigation }) => {
 		<List>
 			{
 				songs.map((song, i) => {
-					const value = `${song.title} - ${song.artist}`
-					return <ListItem key={i} icon='download-outline' onPress={() => handlePress(song._id)} value={value} />
+					const value = `${song.artist} - ${song.title}`
+					return <ListItem key={i} icon='download-outline' onPress={() => handlePress(song._id, song.artist)} value={value} />
 				})
 			}
 		</List>
