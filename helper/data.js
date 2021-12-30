@@ -14,31 +14,31 @@ When you [D]first took my [Bm]hand
 On a [D]cold Christmas [G]Eve
 You [D]promised me
 Broadway was [A]waiting for [D]me`
-const nordTitleData = "Gustaf Nordqvist - Jul, jul strålande jul"
-const nordContentData = `{title: Jul, jul, strålande jul}
-{subtitle: Nordquist}
+// const nordTitleData = "Gustaf Nordqvist - Jul, jul strålande jul"
+// const nordContentData = `{title: Jul, jul, strålande jul}
+// {subtitle: Nordquist}
 
-J[F]ul, j[Bbm6]ul, str[F]ålande j[Bbm6]ul
-Gl[F]ans över v[Fmaj]ita sk[Bb/F]o[Bbm/F]g[F]ar
+// J[F]ul, j[Bbm6]ul, str[F]ålande j[Bbm6]ul
+// Gl[F]ans över v[Fmaj]ita sk[Bb/F]o[Bbm/F]g[F]ar
 
-H[Bb]immelens kr[C]onor med gn[Bb]istrande lj[C]us
-Gl[Gm]immande b[A]ågar i [Gm]alla Guds h[A]us
-Ps[Bb/D]alm som är sj[F/A]ungen från t[C6]id till t[Bb]id
-[Gm/Bb]Eviga l[Dm]ängtan till lj[Gm/Bb]us och fr[A]id
+// H[Bb]immelens kr[C]onor med gn[Bb]istrande lj[C]us
+// Gl[Gm]immande b[A]ågar i [Gm]alla Guds h[A]us
+// Ps[Bb/D]alm som är sj[F/A]ungen från t[C6]id till t[Bb]id
+// [Gm/Bb]Eviga l[Dm]ängtan till lj[Gm/Bb]us och fr[A]id
 
-J[F]ul, j[Bbm6]ul, str[F]ålande j[Bbm6]ul
-Gl[F]ans över v[Fmaj/A]it[Bb]a sk[C9-8-7]og[F]ar
+// J[F]ul, j[Bbm6]ul, str[F]ålande j[Bbm6]ul
+// Gl[F]ans över v[Fmaj/A]it[Bb]a sk[C9-8-7]og[F]ar
 
-Kom, kom, signade jul
-Sänk dina vita vingar
+// Kom, kom, signade jul
+// Sänk dina vita vingar
 
-Över stridernas blod och larm
-Över all suckan ur människobarm
-Över de släkten som gå till ro
-Över de ungas dagande bo
+// Över stridernas blod och larm
+// Över all suckan ur människobarm
+// Över de släkten som gå till ro
+// Över de ungas dagande bo
 
-Kom, kom, signade jul
-Sänk dina vita vingar`
+// Kom, kom, signade jul
+// Sänk dina vita vingar`
 
 const hallelujahTitleData = "Leonard Cohen - Hallelujah"
 const hallelujahContentData = `{title: Hallelujah}
@@ -65,7 +65,7 @@ Hallelujah, Hallelujah`
 // First comest title, then comes data.
 const songArr = [
 	[poguesTitleData, poguesContentData],
-	[nordTitleData, nordContentData],
+	// [nordTitleData, nordContentData],
 	[hallelujahTitleData, hallelujahContentData],
 ]
 export { songArr }
