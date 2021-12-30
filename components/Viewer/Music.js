@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, Platform, View } from 'react-native';
 // import { createChordLine, hasLyrics } from '../../helper/music';
 import { MonoText } from '../../typography';
 
@@ -16,13 +16,14 @@ const Music = ({ content }) => {
 		content.acc.forEach((chordObj, i) => {
 			result.push(
 				<Container key={i}>
-					<Lyrics style={styles.lyric}>{lyrics.slice(prev, chordObj.position)}
-					</Lyrics>
+					<Lyrics>{lyrics.slice(prev, chordObj.position)}</Lyrics>
 					<Chord>{chordObj.chord}</Chord>
-				</Container>)
+				</Container>
+			)
 			rest = lyrics.slice(chordObj.position)
 			prev = chordObj.position
 		})
+		// This adds the last text that has no chord after it. If there is no more lyrics the rest variable is empty string
 		result.push(
 			<Container key={-1} >
 				<Lyrics>
@@ -37,7 +38,7 @@ const Container = ({ children, ...restProps }) => (
 	<Text style={styles.musicContainer} {...restProps}>{children}</Text>
 )
 const Chord = ({ children }) => (
-	<View style={styles.chordContainer}>
+	<View>
 		<MonoText style={styles.chord}>{children}</MonoText>
 	</View>
 )
@@ -46,9 +47,36 @@ const Lyrics = ({ children }) => (
 )
 
 // Goes through music, and if there are two chords in same position, or overlapping, then insert dashes in lyrics until no longer overlaps.
-const distance = 14;
+// const size = 15;
+// const bottom = size / 3
+let chord = { fontSize: 15, color: 'black', position: 'absolute' };
+let lyric = { fontSize: 15, position: 'relative', lineHeight: 35 };
+switch (Platform.OS) {
+	case 'web':
+		{
+			chord.bottom = 3;
+			lyric.bottom = -8
+			break;
+		}
+	case 'android':
+		{
+			chord.bottom = 10;
+			lyric.bottom = -10
+			break;
+		}
+	case 'ios':
+		// The ios version has not been tested at all.
+		{
+			chord.bottom = 10;
+			lyric.bottom = -10
+			break;
+		}
+	default:
+		throw new Error("Encountered unknown platform OS.")
+}
+
 const styles = StyleSheet.create({
-	chord: { color: 'black', left: 0, top: -distance - 7, position: 'absolute' },
-	lyric: { position: 'relative', top: distance - 7, lineHeight: '250%' },
+	chord,
+	lyric,
 })
 export default Music
