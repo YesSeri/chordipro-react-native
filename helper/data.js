@@ -1,9 +1,23 @@
 const poguesTitleData = "The Pogues - Fairytale of New York"
 const poguesContentData = `{t:Fairytale Of New York}
 {st:The Pogues}
+
+[G/D]    	[D]  [G/D]     
+[Asus4/E]	[D]  [G/D]    
+
+It was Christmas [D]Eve babe In the [G]drunk tank
+An old man [D]said to me, won't see an[G/A]other one [A] And then he [D]sang a song
+The Rare Old [G]Mountain Dew And I turned my [D]face away
+And [G]dreamed a[Asus4/E]bout    [D]you[G/A]
+
+Got on a [D]lucky one Came in eight[G]een to one
+I've got a [D]feeling This year's for [G/A]me and you[A]
+So happy [D]Christmas I love you [G]baby
+I can see a [D]better time When [G]all our d[Asus4/E]reams come [D]true
  
-[G/D]    [D]  [G/D]     
-[Asus4/E]        [D]  [G/D]    
+[G/D] [D] [G/D] [Asus4]           
+{comment: faster now}
+[D] [A]  [D [G] [A] [D]
  
 They've got [D]cars
 Big as [A]bars
@@ -13,7 +27,44 @@ It's no place for the [A]old
 When you [D]first took my [Bm]hand
 On a [D]cold Christmas [G]Eve
 You [D]promised me
-Broadway was [A]waiting for [D]me`
+Broadway was [A]waiting for [D]me
+You were [D]handsome
+ 
+You were pretty
+Queen of New York [A]City
+When the [D]band finished [G]playing
+They [A]howled out for [D]more
+[D]Sinatra was swinging
+All the drunks they were [A]singing
+We [D]kissed on the [G]corner
+Then [A]danced through the [D]night
+The [G]boys of the NY[Bm]PD [A]choir
+Were [D]singing 'Galway [Bm]Bay'
+And the [D]bells were [G]ringing
+[A]Out for Christmas [D]da[A]y [Bm]   [G]   [D]  [A]   [D]  [Bm]   [D]  [G]    [D]  [A]  [D] 
+ 
+[D]You're a bum
+You're a [D]punk
+You're an old slut on [A]junk
+Living [D]there almost [G]dead on a [A]drip
+In that [D]bed
+You [D]scum bag
+ 
+You maggot
+You cheap lousy [A]faggot
+Happy [D]Christmas your [G]arse
+I pray [A]God
+It's our [D]last[A][D]
+ 
+[A]I could have [D]been someone
+So could [G]anyone
+You took my [D]dreams
+From me when I first [A]found you
+I kept them [D]with me babe
+I put them [G]with my own
+Can't make it [D]all alone
+I've built my [G]dreams [A]around [D]you
+`
 // const nordTitleData = "Gustaf Nordqvist - Jul, jul strålande jul"
 // const nordContentData = `{title: Jul, jul, strålande jul}
 // {subtitle: Nordquist}
@@ -61,7 +112,29 @@ She tied you to a kitchen chair, she broke your throne, and she cut your hair
 And from your lips she drew the Hallelujah
 
 Hallelujah, Hallelujah
-Hallelujah, Hallelujah`
+Hallelujah, Hallelujah
+
+You say I took the name in vain
+I don't even know the name
+But if I did, well really, what's it to you?
+There's a blaze of light in every word
+It doesn't matter which you heard
+The holy or the broken Hallelujah
+
+Hallelujah, Hallelujah
+Hallelujah, Hallelujah
+
+I did my best, it wasn't much
+I couldn't feel, so I tried to touch
+I've told the truth, I didn't come to fool you
+And even though it all went wrong
+I'll stand before the Lord of Song
+With nothing on my tongue but Hallelujah
+
+Hallelujah, Hallelujah
+Hallelujah, Hallelujah
+Etc...`
+
 // First comest title, then comes data.
 const songArr = [
 	[poguesTitleData, poguesContentData],
