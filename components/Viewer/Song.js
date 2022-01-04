@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native';
-import Declaration from './Declaration'
+import Directive from './Directive'
 import Music from './Music'
-import parseSong from '../../helper/parser'
+import { parseSong } from '../../helper/parser'
 import { MonoText } from '../../typography';
 
 const Song = ({ content }) => {
@@ -84,12 +84,12 @@ function fixLine(line) {
 
 const SongElement = ({ el }) => {
 	switch (el.type) {
-		case 'declaration':
-			return <Declaration command={el.subtype.command} arg={el.subtype.argument} />
+		case 'directive':
+			return <Directive command={el.subtype.command} arg={el.subtype.argument} />
 		case 'empty':
 			return <Empty />
 		case 'music':
-			return <Music content={el.content}></Music>
+			return <Music content={el.content} isChorus={el.modifiers.chorus}></Music>
 		case 'acapella':
 			return <Acapella>{el.content.lyrics}</Acapella>
 		// This case gets triggered on a dev comment, that starts with an X. They should never be shown.

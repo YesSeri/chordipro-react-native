@@ -3930,6 +3930,11 @@ chokidar@^3.4.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
+chord-magic@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/chord-magic/-/chord-magic-2.1.1.tgz#e61897f304a712c8f61fada66d057b76a5867f01"
+  integrity sha512-Ci589AkKx8gnibsmBZzA8Aume/QWEMNuwHF8SZf3Fb7GCRIEy3Opi81+iI4jfIHhY8GOG+t3VY9C/2oSM2HCkA==
+
 chownr@^1.1.1:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"

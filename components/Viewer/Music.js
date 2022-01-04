@@ -4,7 +4,7 @@ import { Text, StyleSheet, Platform, View } from 'react-native';
 import { MonoText } from '../../typography';
 
 
-const Music = ({ content }) => {
+const Music = ({ content, isChorus }) => {
 	// If there is no lyrics, only chords, just print the line cleanly.
 	let result = [];
 	if (content.lyrics.trim() === "") {
@@ -32,10 +32,17 @@ const Music = ({ content }) => {
 			</Container>
 		)
 	}
-	return <Text>{result}</Text>
+	return isChorus ?
+		<View style={[styles.chorus]}>
+			<Text> {result}</Text>
+		</View>
+		:
+		<View>
+			<Text>{result}</Text>
+		</View>
 }
 const Container = ({ children, ...restProps }) => (
-	<Text style={styles.musicContainer} {...restProps}>{children}</Text>
+	<Text style={[]} {...restProps}>{children}</Text>
 )
 const Chord = ({ children }) => (
 	<View>
@@ -78,5 +85,11 @@ switch (Platform.OS) {
 const styles = StyleSheet.create({
 	chord,
 	lyric,
+	chorus: {
+		borderLeftColor: "black",
+		borderLeftWidth: 3,
+		marginLeft: 3
+	}
 })
+
 export default Music

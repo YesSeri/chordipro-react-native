@@ -1,3 +1,4 @@
+import { transpose, parse, prettyPrint } from 'chord-magic';
 const squareBracketsRe = /\[.*?]/;
 
 function replaceFirstOccurence(text, searchPhrase) {
@@ -41,10 +42,26 @@ function getLyrics(text) {
 	// Removes all chords from lyrics
 	return text.replace(/\[.*?]/g, '');
 }
-function getMusicLine(line) {
-	return {
-		acc: getChordAndSpaces(line), lyrics: getLyrics(line)
+function getMusicLine(line, transposeSemiTones) {
+	let acc = getChordAndSpaces(line)
+	if (transposeSemiTones != 0) {
+		acc = acc.map(chordObj => {
+			const transposedChord = transposeChord(chordObj.chord, transposeSemiTones)
+			return { ...chordObj, chord: transposedChord }
+		})
 	}
+	return {
+		acc, lyrics: getLyrics(line)
+	}
+}
+
+// Recieves "G" and 2 => "A"
+// Recieves "Gm" and -1 => "F#m"
+function transposeChord(chord, transposeSemitones) {
+	if (!transposeSemitones) {
+		transposeSemitones = 0;
+	}
+	return prettyPrint(transpose(parse(chord), transposeSemitones))
 }
 
 
@@ -63,7 +80,7 @@ function validateBrackets(input) {
 }
 
 // Looks at line and figures out if it is 
-// - declaration {} 
+// - directive {} 
 // - comment #
 // - song text and chords | let it b[D]e
 // - song text no chords, a capella for example | let it be
@@ -75,7 +92,7 @@ function analyzeLine(line) {
 		return "empty"
 	}
 	if (line.trim().charAt(0) === '{') {
-		return "declaration"
+		return "directive"
 	}
 	if (line.includes('[') && validateBrackets(line)) {
 		return "music"
@@ -84,7 +101,59 @@ function analyzeLine(line) {
 	return 'acapella'
 }
 
-function getDeclarationCommand(line) {
+// https://www.chordpro.org/chordpro/chordpro-directives/
+// Meta-data directives 
+// title (short: t) X
+// sorttitle
+// subtitle (short: st) X
+// artist
+// composer
+// lyricist
+// copyright
+// album
+// year
+// key
+// time
+// tempo
+// duration
+// capo
+// meta
+
+//Formatting directives
+//comment (short: c) X
+//highlight
+//comment_italic (short: ci)
+//comment_box (short: cb)
+//image
+
+
+// Introduction to environments
+// start_of_chorus (short: soc) X
+// end_of_chorus (short: eoc) X
+// chorus
+// start_of_verse (short: sov)
+// end_of_verse (short: eov)
+// start_of_bridge (short: sob)
+// end_of_bridge (short: eob)
+// start_of_tab (short: sot)
+// end_of_tab (short: eot)
+// start_of_grid (short: sog)
+// end_of_grid (short: eog)
+
+
+// Delegate environment directives 
+// start_of_abc / end_of_abc
+// start_of_ly / end_of_ly
+
+// Chord diagrams
+// define
+// chord
+
+// Transposition
+// transpose CURRENTLY DOING
+
+
+function getDirectiveCommand(line) {
 	const [command] = line.slice(1, -1).split(':');
 	if (command === 'soc' || command === 'start_of_chorus') {
 		return 'start_of_chorus';
@@ -101,8 +170,11 @@ function getDeclarationCommand(line) {
 	if (command === 'comment' || command === 'c') {
 		return 'comment'
 	}
+	if (command === 'transpose') {
+		return 'transpose';
+	}
 }
-function getDeclarationArguments(line) {
+function getDirectiveArguments(line) {
 	// slice removes the square brackets.
 	const [, argument] = line.slice(1, -1).split(':');
 	if (!argument) {
@@ -110,30 +182,25 @@ function getDeclarationArguments(line) {
 	}
 	return argument.trim();
 }
-function parseDeclarationSubtype(line) {
+function parseDirectiveSubtype(line) {
 	return {
-		command: getDeclarationCommand(line),
-		argument: getDeclarationArguments(line)
+		command: getDirectiveCommand(line),
+		argument: getDirectiveArguments(line)
 	}
 }
 
 function htmlInfo(line, modifiers) {
 
-	let modArr = [];
-	if (modifiers.chorus) {
-		modArr.push('chorus')
-	}
-
 	const type = analyzeLine(line);
 	if (type === 'music') {
 		return {
-			content: getMusicLine(line),
+			content: getMusicLine(line, modifiers.transpose),
 			type,
-			modifiers: [...modArr]
+			modifiers: { ...modifiers }
 		}
 	}
-	if (type === 'declaration') {
-		const subtype = parseDeclarationSubtype(line)
+	if (type === 'directive') {
+		const subtype = parseDirectiveSubtype(line)
 		return {
 			type, subtype
 		}
@@ -144,7 +211,7 @@ function htmlInfo(line, modifiers) {
 				lyrics: line
 			},
 			type,
-			modifiers: [...modArr]
+			modifiers: { ...modifiers }
 		}
 	}
 	if (type === "devComment") {
@@ -156,22 +223,32 @@ function htmlInfo(line, modifiers) {
 	if (type === "empty") {
 		return {
 			type,
-			modifiers: [...modArr]
+			modifiers: { ...modifiers }
 		}
 	}
 
 }
 // parseSong needs to contain modifiers for if it currently is a chorus and other things that will later affect how the text should be displayed. 
 function parseSong(song) {
-	let modifiers = { chorus: false }
+	let modifiers = { chorus: false, transpose: 0 }
 	const arr = splitByNewline(song);
 	const infoArr = arr.map(el => {
 		const info = htmlInfo(el, modifiers);
-		if (info?.subtype?.command === "start_of_chorus") {
-			modifiers.chorus = true;
-		}
-		if (info?.subtype?.command === "end_of_chorus") {
-			modifiers.chorus = false;
+		switch (info?.subtype?.command) {
+			case "start_of_chorus": {
+				modifiers.chorus = true;
+				break;
+			}
+			case "end_of_chorus": {
+				modifiers.chorus = false;
+				break;
+			}
+			case "transpose": {
+				modifiers.transpose = parseInt(info?.subtype?.argument);
+				break;
+			}
+			default:
+				break;
 		}
 		return info
 	})
@@ -193,28 +270,29 @@ function parseSong(song) {
 // 	modifiers: ['chorus']
 // }
 // const title = {
-// 	type: 'declaration', subtype: { command: 'title', argument: 'Bohemian Rhapsody' }
+// 	type: 'directive', subtype: { command: 'title', argument: 'Bohemian Rhapsody' }
 // }
 // const chorusInit = {
-// 	type: 'declaration', subtype: { command: 'start_of_chorus', argument: "" },
+// 	type: 'directive', subtype: { command: 'start_of_chorus', argument: "" },
 // }
 // const chorusInit = {
-// 	type: 'declaration', subtype: { command: 'start_of_chorus', argument: "" },
+// 	type: 'directive', subtype: { command: 'start_of_chorus', argument: "" },
 // }
 //
-// const exportedForTesting = {
-// 	parseDevComment,
-// 	replaceFirstOccurence,
-// 	removeChordNTimes,
-// 	getNthChordAndSpaces,
-// 	splitByNewline,
-// 	analyzeLine,
-// 	getLyrics,
-// 	getChordAndSpaces,
-// 	parseSong,
-// 	getDeclarationCommand,
-// 	getDeclarationArguments,
-// 	parseDeclarationSubtype,
-// 	getMusicLine,
-// }
-export default parseSong
+const exportedForTesting = {
+	validateBrackets,
+	replaceFirstOccurence,
+	removeChordNTimes,
+	getNthChordAndSpaces,
+	splitByNewline,
+	analyzeLine,
+	getLyrics,
+	getChordAndSpaces,
+	parseSong,
+	getDirectiveCommand,
+	getDirectiveArguments,
+	parseDirectiveSubtype,
+	getMusicLine,
+	transposeChord,
+}
+export { parseSong, exportedForTesting }
