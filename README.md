@@ -44,7 +44,7 @@ yarn android
 
 Contributions are always welcome!
 
-Contact me for invite to the Google Playt beta testing program.
+Contact me for invite to the Google Play beta testing program.
 
 Contact me at [henrik.zenkert@gmail.com](mailto:henrik.zenkert@gmail.com)
 
