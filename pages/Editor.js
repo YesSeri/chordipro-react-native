@@ -21,7 +21,6 @@ const Editor = () => {
 		saveData(content, title);
 		setHasChanged(false);
 	}
-	console.log(visible)
 	return (
 		<SafeAreaViewCustom style={styles.container}>
 			{hasFile ?
