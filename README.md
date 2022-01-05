@@ -50,7 +50,11 @@ Contact me at [henrik.zenkert@gmail.com](mailto:henrik.zenkert@gmail.com)
 
 ## Roadmap
 
--  The look of the viewer is not optimal. Change font maybe, and work with how big the margins inbetween comment and music should be. 
+- The look of the viewer is not optimal. Change font maybe, and work with how big the margins inbetween comment and music should be. 
+
+- Add undo function to editor. 
+
+- Make sure cursor is in right position in editor after clicking one of the directive buttons. 
 
 - A search function will be implemented. A backend with a database of songs will be created. Most likely written in Java.  
 
