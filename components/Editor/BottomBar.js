@@ -1,11 +1,19 @@
 import React from 'react'
-import { StyleSheet, Button, View } from 'react-native';
+import { StyleSheet, Pressable, Button, View, Text } from 'react-native';
 import { colors } from '../../helper/designContext';
 
 const createNewContent = (content, pos, text) => {
 	return content.slice(0, pos) + text + content.slice(pos)
 }
-const BottomBar = ({ setVisible, hasChanged, handleSavePress, content, cursorPositions, updateContent, setCursorPositions }) => {
+const BottomBar = ({
+	setVisible,
+	hasChanged,
+	handleSavePress,
+	content,
+	cursorPositions,
+	updateContent,
+	// setCursorPositions,
+}) => {
 	function insertCurlyBrackets() {
 		const newContent = createNewContent(content, cursorPositions.start, "{: }")
 		updateContent(newContent)
@@ -22,19 +30,22 @@ const BottomBar = ({ setVisible, hasChanged, handleSavePress, content, cursorPos
 		<View>
 			<View style={[styles.allButtonContainer]}>
 				<View style={[styles.buttonContainer, styles.lowerButton]}>
-					<Button title="Directive { : }" onPress={insertCurlyBrackets} color="#335" />
+					<Button title="DIRECTIVE {:}" onPress={insertCurlyBrackets} color={colors.color4} />
 				</View>
 				<View style={[styles.buttonContainer, styles.lowerButton]}>
-					<Button title="Chord [ ]" onPress={insertSquareBrackets} color="#353" />
+					<Button title="CHORD []" onPress={insertSquareBrackets} color={colors.color3} />
 				</View>
-				<View style={[styles.buttonContainer, styles.lowerButton]}>
-					<Button title="Comment { c : }" onPress={insertComment} color="#533" />
+
+				<View style={[styles.buttonContainer, styles.lowerButton, { justifyContent: 'center', textAlign: 'center', backgroundColor: colors.color1 }]}>
+					<Pressable uppercase={false} title="" onPress={insertComment}  >
+						<Text style={{ color: 'white' }}>{"COMMENT {c:}"}</Text>
+					</Pressable>
 				</View>
 			</View>
 
 			<View style={styles.allButtonContainer}>
 				<View style={styles.buttonContainer}>
-					<Button title="info" onPress={() => setVisible(true)} color={colors.color1} />
+					<Button title="info" onPress={() => setVisible(true)} color={colors.color5} />
 				</View>
 				<View style={styles.buttonContainer}>
 					<Button title="save" disabled={!hasChanged} onPress={handleSavePress} color={colors.color2} />

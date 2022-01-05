@@ -16,11 +16,17 @@
 // const color4 = "#06D6A0"; //--caribbean-green: #06d6a0ff;
 // const color5 = "#FFFCF9"; //--baby-powder: #fffcf9ff;
 
-const color1 = "#FBC93B"; //--Yellow
-const color2 = "#6CC0E5"; //--Blue
-const color3 = "#FB4F4F"; //--Red
-const color4 = "#FFFFFF"; //--
-const color5 = "#000000"; //--
+// const color1 = "#FBC93B"; //--Yellow
+// const color2 = "#6CC0E5"; //--Blue
+// const color3 = "#FB4F4F"; //--Red
+// const color4 = "#FFFFFF"; //--
+// const color5 = "#000000"; //--
+
+const color1 = "#FDCA40"; //--Yellow
+const color2 = "#3772FF"; //--Blue
+const color3 = "#DF2935"; //--Red
+const color4 = "#372248"; //--Purple
+const color5 = "#00635D"; //--Green
 
 
 // const color1 = "#160c28ff";//darkPurple

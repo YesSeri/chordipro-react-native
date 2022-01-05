@@ -1,7 +1,12 @@
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native';
 
-const TextEditor = ({ value = "", updateContent, style, setCursorPositions, cursorPositions }) => {
+const TextEditor = ({ value = "",
+	updateContent,
+	style,
+	setCursorPositions,
+	// cursorPositions
+}) => {
 	function handleChange(e) {
 		setCursorPositions(e.nativeEvent.selection)
 	}

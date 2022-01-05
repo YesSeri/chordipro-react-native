@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { View, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Error from '../components/Error';
 import SongContext from '../helper/state';
 import { noFileErrorMessage } from '../helper/ErrorMessages';
