@@ -7,13 +7,15 @@ import { saveData } from '../storage';
 import TextEditor from '../components/Editor/TextEditor';
 import SafeAreaViewCustom from '../components/reuseable/SafeAreaViewCustom';
 import CustomModal from '../components/Editor/CustomModal';
+import BottomBar from '../components/Editor/BottomBar';
 
 const Editor = () => {
 	const [hasChanged, setHasChanged] = useState(false)
+	const [cursorPositions, setCursorPositions] = useState(null)
 	const [visible, setVisible] = useState(false)
 	const { state: { content, title }, dispatch } = useContext(SongContext)
 	const hasFile = !!title
-	function handleChange(newContent) {
+	function updateContent(newContent) {
 		setHasChanged(true);
 		dispatch({ type: 'setContent', payload: { content: newContent } })
 	}
@@ -25,18 +27,26 @@ const Editor = () => {
 		<SafeAreaViewCustom style={styles.container}>
 			{hasFile ?
 				<View style={styles.container}>
-					<View style={styles.container}>
-						<TextEditor onChangeText={handleChange} value={content} />
-					</View>
-					<Button title="save" disabled={!hasChanged} onPress={handleSavePress} />
+					<TextEditor updateContent={updateContent}
+						value={content}
+						setCursorPositions={setCursorPositions}
+						cursorPositions={cursorPositions}
+					/>
 				</View>
 				:
-				<>
-					<Error>{noFileErrorMessage}</Error>
-				</>
+				<Error>{noFileErrorMessage}</Error>
 			}
+			{/* <Button title="test" onPress={insertCurlyBrackets} color={"red"} /> */}
+			<BottomBar
+				setVisible={setVisible}
+				hasChanged={hasChanged}
+				handleSavePress={handleSavePress}
+				content={content}
+				cursorPositions={cursorPositions}
+				updateContent={updateContent}
+				setCursorPositions={setCursorPositions}
+			/>
 			<CustomModal setVisible={setVisible} visible={visible} />
-			<Button title="info" onPress={() => setVisible(true)} />
 		</SafeAreaViewCustom >
 	)
 }
@@ -44,6 +54,12 @@ const Editor = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	allButtonContainer: {
+		flexDirection: 'row',
+	},
+	buttonContainer: {
+		flex: 1
 	},
 });
 

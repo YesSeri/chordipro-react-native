@@ -1,17 +1,23 @@
 import React from 'react'
 import { StyleSheet, TextInput } from 'react-native';
 
-const TextEditor = ({ value = "", onChangeText, style }) => {
+const TextEditor = ({ value = "", updateContent, style, setCursorPositions, cursorPositions }) => {
+	function handleChange(e) {
+		setCursorPositions(e.nativeEvent.selection)
+	}
 	return (
 		<TextInput
 			style={[styles.textInput, style]}
 			placeholder="Enter song in chordpro format. View example song for more details."
 			autoCorrect={false}
-			value={value}
-			onChangeText={onChangeText}
+			onChangeText={updateContent}
 			multiline
 			spellCheck={false}
-		/>
+			// selection={{ cursorPositions }}
+			onSelectionChange={handleChange}
+			value={value}
+		>
+		</TextInput>
 
 	)
 }
