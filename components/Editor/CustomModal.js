@@ -2,7 +2,7 @@ import React from 'react'
 import { Button, Modal, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Heading, SubHeading } from '../../typography'
-import List from './List';
+import List from './EditorModalList';
 
 const CustomModal = ({ visible, setVisible }) => {
 	function leaveModal() {

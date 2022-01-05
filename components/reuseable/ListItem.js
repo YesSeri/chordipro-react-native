@@ -2,13 +2,13 @@ import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const ListItem = ({ onPress, value, icon }) => {
+const ListItem = ({ onPress, children, icon }) => {
 	return (
 		<Pressable onPress={onPress}>
 			<View>
 				<Text>
 					<Ionicons name={icon} style={styles.ionicon} />
-					{value}
+					{children}
 				</Text>
 			</View>
 		</Pressable>

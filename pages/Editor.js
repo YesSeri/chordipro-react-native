@@ -10,7 +10,7 @@ import CustomModal from '../components/Editor/CustomModal';
 
 const Editor = () => {
 	const [hasChanged, setHasChanged] = useState(false)
-	const [visible, setVisible] = useState(true)
+	const [visible, setVisible] = useState(false)
 	const { state: { content, title }, dispatch } = useContext(SongContext)
 	const hasFile = !!title
 	function handleChange(newContent) {

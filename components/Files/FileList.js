@@ -56,7 +56,7 @@ const FileList = ({ files = [], navigation, isDeleting }) => {
 	return (
 		<List>
 			{files.map((el, i) => (
-				<ListItem key={i} icon='document-outline' onPress={() => handleClick(el)} value={el} />
+				<ListItem key={i} icon='document-outline' onPress={() => handleClick(el)}>{el}</ListItem>
 			))}
 		</List>
 	)
