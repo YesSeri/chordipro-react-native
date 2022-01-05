@@ -37,11 +37,6 @@ yarn android
 - Async-Storage
 - React-Navigation
 
-## Authors
-
-[Henrik Zenkert](https://www.github.com/YesSeri)
-
-
 ## Contributing
 
 Contributions are always welcome!
@@ -56,3 +51,6 @@ Contact me at [henrik.zenkert@gmail.com](mailto:henrik.zenkert@gmail.com)
 
 - A search function will be implemented. A backend with a database of songs will be created. Most likely written in Java.  
 
+## Authors
+
+[Henrik Zenkert](https://www.github.com/YesSeri)
