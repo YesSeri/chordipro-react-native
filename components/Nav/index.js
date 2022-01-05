@@ -7,9 +7,9 @@ import { Editor, Viewer, Files } from '../../pages'
 import { colors } from '../../helper/designContext';
 
 const tabs = [
+	{ name: "Editor", component: Editor },
 	{ name: "Files", component: Files },
 	{ name: "Viewer", component: Viewer },
-	{ name: "Editor", component: Editor },
 	// { name: "Finder", component: Finder },
 ]
 

@@ -4,11 +4,13 @@ import Error from '../components/Error';
 import SongContext from '../helper/state';
 import { noFileErrorMessage } from '../helper/ErrorMessages';
 import { saveData } from '../storage';
-import TextEditor from '../components/TextEditor';
+import TextEditor from '../components/Editor/TextEditor';
 import SafeAreaViewCustom from '../components/reuseable/SafeAreaViewCustom';
+import CustomModal from '../components/Editor/CustomModal';
 
 const Editor = () => {
 	const [hasChanged, setHasChanged] = useState(false)
+	const [visible, setVisible] = useState(true)
 	const { state: { content, title }, dispatch } = useContext(SongContext)
 	const hasFile = !!title
 	function handleChange(newContent) {
@@ -19,6 +21,7 @@ const Editor = () => {
 		saveData(content, title);
 		setHasChanged(false);
 	}
+	console.log(visible)
 	return (
 		<SafeAreaViewCustom style={styles.container}>
 			{hasFile ?
@@ -29,8 +32,12 @@ const Editor = () => {
 					<Button title="save" disabled={!hasChanged} onPress={handleSavePress} />
 				</View>
 				:
-				<Error>{noFileErrorMessage}</Error>
+				<>
+					<Error>{noFileErrorMessage}</Error>
+				</>
 			}
+			<CustomModal setVisible={setVisible} visible={visible} />
+			<Button title="info" onPress={() => setVisible(true)} />
 		</SafeAreaViewCustom >
 	)
 }

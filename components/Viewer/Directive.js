@@ -14,11 +14,14 @@ const Directive = ({ command, arg }) => {
 	if (command === 'title' || command === 't') {
 		return <Title arg={arg} />
 	}
-	if (command === 'subtitle' || command === 'st') {
+	else if (command === 'subtitle' || command === 'st') {
 		return <Subtitle arg={arg} />
 	}
-	if (command === 'comment' || command === 'c') {
+	else if (command === 'comment' || command === 'c') {
 		return <Comment arg={arg} />
+	}
+	else if (command === 'year') {
+		return <Text>Composed in: <Comment arg={arg} /></Text>
 	}
 	// This is soc eoc and transpose
 	return null;
