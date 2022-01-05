@@ -12,12 +12,15 @@ Wh[G]en I find myself in t[D]imes of trouble, Mo[Em]ther Mary c[C]omes to me
 
 This is a minimal example of a song. This will be transformed into something to play music after. The title should be styled appropriately and the chords should be placed above the word after where they occur in the song.  
 For example: 
-<div style="background: white; color:black; font-family: monospace" class="custom">
-	<div style="font-size: 25px;">Let it Be</div>
-	<div style="font-size: 20px; font-style: italic">The Beatles</div>
-	<div style="white-space: pre;">        G              D                 Em          C</div>
-	<div>
-	When I find myself in times of trouble, Mother Mary comes to me
+
+<div style="background: white; color:black; font-family: monospace; border: solid 5px #888;" class="custom">
+	<div style="margin:10px">
+		<div style="font-size: 25px;">Let it Be</div>
+		<div style="font-size: 20px; font-style: italic">The Beatles</div>
+		<div style="white-space: pre;">        G              D                 Em          C</div>
+		<div>
+		When I find myself in times of trouble, Mother Mary comes to me
+		</div>
 	</div>
 </div>
 
