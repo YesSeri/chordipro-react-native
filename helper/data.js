@@ -1,3 +1,37 @@
+const tutorialTitleData = "Tutorial - An example"
+const tutorialContentData = `{title: Song Title}
+{subtitle: Name of artist}
+{year: 1999 }
+{comment: Go to Editor and info for a detailed overview. }
+
+{comment: These are chords}
+[A] [D] [Esus4] [E7] [A]    
+
+{comment: This is lyrics and chords}
+I l[A]ove you so v[D]ery much, n[Esus4]ever l[E7]et me g[A]o!
+
+{comment: Use transpose to change key}
+{comment: A positive number transposes up}
+{comment: From A major to Bb major here}
+{transpose: 1}
+
+I l[A]ove you so v[D]ery much, n[Esus4]ever l[E7]et me g[A]o!
+
+{comment: A negative number transposes down}
+{comment: From A major to G major here}
+{transpose: -2}
+
+I l[A]ove you so v[D]ery much, n[Esus4]ever l[E7]et me g[A]o!
+
+{comment: Use start_of_chorus or soc to start the chorus.}
+{start_of_chorus}
+
+I l[A]ove you so v[D]ery much, n[Esus4]ever l[E7]et me g[A]o!
+
+{end_of_chorus}
+{comment: Use end_of_chorus or eoc to end the chorus.}
+`
+
 const poguesTitleData = "The Pogues - Fairytale of New York"
 const poguesContentData = `{t:Fairytale Of New York}
 {st:The Pogues}
@@ -137,8 +171,8 @@ Etc...`
 
 // First comest title, then comes data.
 const songArr = [
+	[tutorialTitleData, tutorialContentData],
 	[poguesTitleData, poguesContentData],
-	// [nordTitleData, nordContentData],
 	[hallelujahTitleData, hallelujahContentData],
 ]
 export { songArr }

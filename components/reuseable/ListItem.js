@@ -1,23 +1,28 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ListItem = ({ onPress, children, icon }) => {
 	return (
-		<Pressable onPress={onPress}>
-			<View>
-				<Text>
-					<Ionicons name={icon} style={styles.ionicon} />
+		<Pressable onPress={onPress} style={{ marginTop: 10 }}>
+			<Text >
+				<Ionicons name={icon} style={styles.ionicon} />
+				<Text style={styles.text}>
 					{children}
 				</Text>
-			</View>
+			</Text>
 		</Pressable>
 	)
 }
 
 const styles = StyleSheet.create({
+	text: {
+		color: 'black',
+		marginBottom: 20,
+		fontSize: 18,
+	},
 	ionicon: {
-		padding: 3,
+		fontSize: 18,
 		color: 'black'
 	}
 });

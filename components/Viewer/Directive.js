@@ -1,5 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { MonoText } from '../../typography';
 
 const Directive = ({ command, arg }) => {
 	// if (command === 'soc' || command === 'start_of_chorus') {
@@ -21,24 +22,28 @@ const Directive = ({ command, arg }) => {
 		return <Comment arg={arg} />
 	}
 	else if (command === 'year') {
-		return <Text>Composed in: <Comment arg={arg} /></Text>
+		return <Year arg={arg} />
 	}
 	// This is soc eoc and transpose
 	return null;
 }
+
+const Year = ({ arg }) => {
+	return <MonoText style={[styles.directive, styles.comment]}>Composed in: {arg}</MonoText>
+}
 const Comment = ({ arg }) => {
 	return (
-		<Text style={[styles.directive, styles.comment]}>{arg}</Text>
+		<MonoText style={[styles.directive, styles.comment]}>{arg}</MonoText>
 	)
 }
 const Title = ({ arg }) => {
 	return (
-		<Text style={[styles.directive, styles.title]}>{arg}</Text>
+		<MonoText style={[styles.directive, styles.title]}>{arg}</MonoText>
 	)
 }
 const Subtitle = ({ arg }) => {
 	return (
-		<Text style={[styles.directive, styles.subtitle]}>{arg}</Text>
+		<MonoText style={[styles.directive, styles.subtitle]}>{arg}</MonoText>
 	)
 }
 
@@ -54,12 +59,14 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 	comment: {
-		fontSize: 15,
+		fontSize: 14,
 		alignSelf: "flex-start",
-		paddingLeft: 5,
-		paddingRight: 5,
-		backgroundColor: 'black',
-		color: 'white',
+		paddingLeft: 2,
+		paddingRight: 2,
+		// borderBottomWidth: 1,
+		// backgroundColor: '#333',
+		// color: 'white',
+		fontStyle: 'italic',
 	}
 });
 
