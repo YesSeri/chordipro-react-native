@@ -5,10 +5,10 @@ const TextEditor = ({ value = "",
 	updateContent,
 	style,
 	setCursorPositions,
-	// cursorPositions
 }) => {
 	function handleChange(e) {
-		setCursorPositions(e.nativeEvent.selection)
+		// console.log(e.native.selection)
+		setCursorPositions({ start: e.target.selectionStart })
 	}
 	return (
 		<TextInput
@@ -18,7 +18,6 @@ const TextEditor = ({ value = "",
 			onChangeText={updateContent}
 			multiline
 			spellCheck={false}
-			// selection={{ cursorPositions }}
 			onSelectionChange={handleChange}
 			value={value}
 		>

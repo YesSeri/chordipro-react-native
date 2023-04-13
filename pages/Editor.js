@@ -11,7 +11,7 @@ import BottomBar from '../components/Editor/BottomBar';
 
 const Editor = () => {
 	const [hasChanged, setHasChanged] = useState(false)
-	const [cursorPositions, setCursorPositions] = useState(null)
+	const [cursorPositions, setCursorPositions] = useState({ start: 0 })
 	const [visible, setVisible] = useState(false)
 	const { state: { content, title }, dispatch } = useContext(SongContext)
 	const hasFile = !!title

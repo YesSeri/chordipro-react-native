@@ -12,7 +12,6 @@ const BottomBar = ({
 	content,
 	cursorPositions,
 	updateContent,
-	// setCursorPositions,
 }) => {
 	function insertCurlyBrackets() {
 		const newContent = createNewContent(content, cursorPositions.start, "{: }")
